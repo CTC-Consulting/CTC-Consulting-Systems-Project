@@ -33,7 +33,7 @@
         </table>
         <br />
         <FORM METHOD="LINK" ACTION="InventoryAdd.jsp">
-            <INPUT TYPE="s ubmit" VALUE="Add Inventory">
+            <INPUT TYPE="submit" VALUE="Add Inventory">
         </FORM>
     </body>
 </html>
