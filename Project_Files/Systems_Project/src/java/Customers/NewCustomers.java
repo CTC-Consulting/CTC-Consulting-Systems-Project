@@ -8,7 +8,12 @@ package Customers;
  *
  * @author Xia
  */
-public class Customers {
+
+import java.sql.*;
+
+import EmployeeLogin.Login;
+
+public class NewCustomers {
     
     private String cus_id;
     private String firstName;
@@ -20,8 +25,31 @@ public class Customers {
     private String DayPhone;
     private String nightPhone;
     private String moble;
+    private String userId;
+    private String password;
     
-     /**
+    public NewCustomers() {
+    }
+    
+    public boolean checkValid() throws SQLException, ClassNotFoundException {
+        boolean test = false;        
+        Statement dbInitializer = Login.dbInitializer();
+        ResultSet resultSet = dbInitializer.executeQuery("select * from login where userId = '" + getUserId() + "' and password ='" + getPassword() +
+                   "'");
+        while (resultSet.next()) {
+            test = true;
+        }
+        return test;
+    }
+    
+    public void doCreate() throws SQLException, ClassNotFoundException {
+        Statement dbInitializer = Login.dbInitializer();
+        dbInitializer.executeUpdate("insert into Customers values ('" + getCus_id() + "', '" + getFirstName() + "', '" + getLastName() + "', '" + getStreet() + "', '"
+                + getCity() + "', '" + getState() + "', '" + getZip() + "', '" + getDayPhone() + "', '"
+                + getNightPhone()+ "', '"  + getMoble() + "');") ; 
+    }
+
+    /**
      * @return the cus_id
      */
     public String getCus_id() {
@@ -161,8 +189,32 @@ public class Customers {
         this.moble = moble;
     }
 
-    
-    
+    /**
+     * @return the userId
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 }
-
-
