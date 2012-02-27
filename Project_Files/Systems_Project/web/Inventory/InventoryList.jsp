@@ -6,6 +6,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
+<%@page import = "java.sql.*;" %>
+<%@page import = "javax.swing.*;" %>
+<%@page import = "java.awt.*;" %>
+<%@page import = "EmployeeLogin.Login" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,15 +26,27 @@
                 <th>Cost</th>
                 <th>Price</th>
             </tr>
-            <% for (int i = 0; i<4; i++) { %>
+            <%  Statement dbInitializer = Login.dbInitializer();
+                
+                // Search for parts list
+                try {
+                    ResultSet parts = dbInitializer.executeQuery("select * from parts");
+                    
+                    // Display results to user
+                    while (parts.next()) { %>
             <tr>
-                <td>Part Data</td>
-                <td>Description Data</td>
-                <td>Manufacturer Data</td>
-                <td>Cost Data</td>
-                <td>Price Data</td>
+                <td><% out.print(parts.getString("part")); %></td>
+                <td><% out.print(parts.getString("description")); %></td>
+                <td><% out.print(parts.getString("manufacturer")); %></td>
+                <td><% out.print(parts.getString("cost")); %></td>
+                <td><% out.print(parts.getString("price")); %></td>
             </tr>
-            <% } %>
+            <%      } 
+                  }
+                //  Catch exception for error
+                catch (SQLException ex) {
+                    ex.printStackTrace();
+                }  %>
         </table>
         <br />
         <FORM METHOD="LINK" ACTION="InventoryAdd.jsp">
