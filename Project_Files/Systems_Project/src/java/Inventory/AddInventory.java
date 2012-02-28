@@ -29,10 +29,14 @@ public class AddInventory {
     public void doCreate() throws SQLException, ClassNotFoundException {
         Statement dbInitializer = Login.dbInitializer();
         try {
-        dbInitializer.executeUpdate("insert into parts values ('" + getItemNumber() + "', '"
-                + getPartName() + "', '" + getPartDescription() + "', '" + getPartManufacturer() + "', '"
-                + getPartCost() + "', '" + getPartPrice() + "');");
-        
+       // dbInitializer.executeUpdate("insert into parts values ('" + getItemNumber() + "', '"
+         //       + getPartName() + "', '" + getPartDescription() + "', '" + getPartManufacturer() + "', '"
+           //     + getPartCost() + "', '" + getPartPrice() + "');");
+        dbInitializer.executeUpdate("insert into parts (part, description, manufacturer, " +
+                "cost, price) values ('" + getPartName() + "', '" + 
+                getPartDescription() + "', '" + getPartManufacturer() + "', '"
+               + getPartCost() + "', '" + getPartPrice() + "');");
+            
         }
         catch (SQLException ex) {
                     ex.printStackTrace();

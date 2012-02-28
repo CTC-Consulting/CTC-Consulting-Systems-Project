@@ -14,8 +14,6 @@
     <body>
         <h1>Motor City Repairs Inventory</h1>
         <form method ="get" action ="AddInventoryCheck.jsp">
-            Item Number
-            <input type = "text" name = "itemNumber" /><br />
             Part
             <input type = "text" name = "partName" /><br />
             Description

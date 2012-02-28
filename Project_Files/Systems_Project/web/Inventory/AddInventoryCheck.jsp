@@ -19,7 +19,10 @@
     </head>
     <body>
         <% AddInventoryId.doCreate();
-          System.out.print(" Test is now registered in the Motor City Inventory database!");
-           out.close(); %>
+          out.print("Your part is now registered in the Motor City Inventory database!");
+          %>
+        <FORM METHOD="LINK" ACTION="InventoryList.jsp">
+            <INPUT TYPE="submit" VALUE="Return to Inventory List">
+        </FORM>
     </body>
 </html>

@@ -20,6 +20,7 @@
         <h1>Motor City Repairs Inventory</h1>
         <table border="1">
             <tr>
+                <Th>Part #</th>
                 <Th>Part</th>
                 <th>Description</th>
                 <th>Manufacturer</th>
@@ -35,11 +36,18 @@
                     // Display results to user
                     while (parts.next()) { %>
             <tr>
+                <td><% out.print(parts.getString("partNum")); %></td>
                 <td><% out.print(parts.getString("part")); %></td>
                 <td><% out.print(parts.getString("description")); %></td>
                 <td><% out.print(parts.getString("manufacturer")); %></td>
                 <td><% out.print(parts.getString("cost")); %></td>
                 <td><% out.print(parts.getString("price")); %></td>
+                <td>
+                <form method ="get" action="InventoryEdit.jsp">
+                    <input type="hidden" name="partNum"
+                           value="<% out.print(parts.getString("partNum")); %>">
+                    <input type="Submit" name="Submit" value="Edit">
+                </form></td>
             </tr>
             <%      } 
                   }
