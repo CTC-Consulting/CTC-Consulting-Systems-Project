@@ -31,7 +31,8 @@
                 
                 // Search for parts list
                 try {
-                    ResultSet parts = dbInitializer.executeQuery("select * from parts");
+                    ResultSet parts = dbInitializer.executeQuery
+                            ("select * from parts");
                     
                     // Display results to user
                     while (parts.next()) { %>
@@ -45,7 +46,8 @@
                 <td>
                 <form method ="get" action="InventoryEdit.jsp">
                     <input type="hidden" name="partNum"
-                           value="<% out.print(parts.getString("partNum")); %>">
+                           value="<% out.print(parts.getString
+                                   ("partNum")); %>">
                     <input type="Submit" name="Submit" value="Edit">
                 </form></td>
             </tr>

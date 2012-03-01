@@ -19,7 +19,8 @@
     </head>
     <body>
         <% AddInventoryId.doCreate();
-          out.print("Your part is now registered in the Motor City Inventory database!");
+          out.print("Your part is now registered in the Motor City "
+                  + "Inventory database!");
           %>
         <FORM METHOD="LINK" ACTION="InventoryList.jsp">
             <INPUT TYPE="submit" VALUE="Return to Inventory List">
