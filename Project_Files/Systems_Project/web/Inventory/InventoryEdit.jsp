@@ -22,7 +22,8 @@
                 
                 // Search for parts list
                 try {
-                    ResultSet parts = dbInitializer.executeQuery("select * from parts "
+                    ResultSet parts = dbInitializer.executeQuery("select * from "
+                            + "parts " 
                             + "where partNum = " + request.getParameter("partNum")
                             + ";");
                     
@@ -30,26 +31,39 @@
                     while (parts.next()) { %>
        Item Number: <% out.print(parts.getString("partNum")); %>    
        <form method ="get" action ="EditInventoryCheck.jsp">
+            <input type="hidden" name="itemNumber"
+                   value="<% out.print(parts.getString("partNum")); %>">
             Part:
             <input type = "text" name = "partName" 
                    value ="<% out.print(parts.getString("part")); %>"/><br />
             Description:
             <input type = "text" name = "partDescription"
-                   value ="<% out.print(parts.getString("description")); %>"/><br />
+                   value ="<% out.print(parts.getString("description")); %>"/>
+            <br />
             Manufacturer:
             <input type = "text" name = "partManufacturer"
-                   value ="<% out.print(parts.getString("manufacturer")); %>"/><br />
+                   value ="<% out.print(parts.getString("manufacturer")); %>"/>
+            <br />
             Cost:
             <input type = "text" name = "partCost"
                    value ="<% out.print(parts.getString("cost")); %>"/><br />
             Price:
             <input type = "text" name = "partPrice"
                    value ="<% out.print(parts.getString("price")); %>"/><br />
+            Quantity:
+            <input type = "text" name = "partQuantity"
+                   value ="<% out.print(parts.getString("quantity")); %>"/><br />
             <p><input type = "submit" name = "Submit"
                       value = "Edit" />
                 <input type = "reset" value = "Reset" />
             </p>
         </form>
+            <form method ="get" action="InventoryDelete.jsp">
+                    <input type="hidden" name="partNum"
+                           value="<% out.print(parts.getString
+                                   ("partNum")); %>">
+                    <input type="Submit" name="Submit" value="Delete Part">
+            </form>
             <%      } 
                   }
                 //  Catch exception for error

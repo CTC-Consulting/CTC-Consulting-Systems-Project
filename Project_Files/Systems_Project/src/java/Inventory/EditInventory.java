@@ -6,42 +6,54 @@ package Inventory;
 
 /**
  *
- * @author User
+ * @author Matthew Shank
  */
-import java.sql.*;
-import java.io.OutputStream;
 
 import EmployeeLogin.Login;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public class AddInventory {
+public class EditInventory {
+    private String itemNumber;
     private String partName;
     private String partDescription;
     private String partManufacturer;
     private String partCost;
     private String partPrice;
     private String partQuantity;
-
-    public AddInventory() {
-        
-    }
-
     
-    public void doCreate() throws SQLException, ClassNotFoundException {
+    public EditInventory() {
+    }
+    
+     public void doEdit() throws SQLException, ClassNotFoundException {
         Statement dbInitializer = Login.dbInitializer();
         try {
-        dbInitializer.executeUpdate("insert into parts (part, description, "
-                + "manufacturer, cost, price, quantity) values ('" + 
-                getPartName() + "', '" + getPartDescription() + "', '"
-                + getPartManufacturer() + "', '" + getPartCost() + "', '"
-                + getPartPrice() + "', '" + getPartQuantity() + "');");
-            
+        dbInitializer.executeUpdate("update parts set part = '" 
+                + getPartName() + "', description = '" + getPartDescription()
+                + "', manufacturer = '" + getPartManufacturer()
+                + "', cost = '" + getPartCost() + "', price = '"
+                + getPartPrice() + "', quantity = '" + getPartQuantity()
+                + "' where partNum = '" + getItemNumber() + "';");
+                            
         }
         catch (SQLException ex) {
                     ex.printStackTrace();
                 } 
        }
 
+    /**
+     * @return the itemNumber
+     */
+    public String getItemNumber() {
+        return itemNumber;
+    }
 
+    /**
+     * @param itemNumber the itemNumber to set
+     */
+    public void setItemNumber(String itemNumber) {
+        this.itemNumber = itemNumber;
+    }
 
     /**
      * @return the partName
@@ -126,8 +138,4 @@ public class AddInventory {
     public void setPartQuantity(String partQuantity) {
         this.partQuantity = partQuantity;
     }
-
-    
-    
 }
-

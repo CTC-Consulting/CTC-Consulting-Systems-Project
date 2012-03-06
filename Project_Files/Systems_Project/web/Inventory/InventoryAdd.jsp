@@ -24,6 +24,8 @@
             <input type = "text" name = "partCost" /><br />
             Price
             <input type = "text" name = "partPrice" /><br />
+            Quantity
+            <input type = "text" name = "partQuantity" /><br />
             <p><input type = "submit" name = "Submit"
                       value = "Add New Inventory" />
                 <input type = "reset" value = "Reset" />

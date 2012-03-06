@@ -26,6 +26,7 @@
                 <th>Manufacturer</th>
                 <th>Cost</th>
                 <th>Price</th>
+                <th>Quantity</th>
             </tr>
             <%  Statement dbInitializer = Login.dbInitializer();
                 
@@ -43,12 +44,20 @@
                 <td><% out.print(parts.getString("manufacturer")); %></td>
                 <td><% out.print(parts.getString("cost")); %></td>
                 <td><% out.print(parts.getString("price")); %></td>
+                <td><% out.print(parts.getString("quantity")); %></td>
+                <td>
+                <form method ="get" action="QuantityAdd.jsp">
+                    <input type="hidden" name="partNum"
+                           value="<% out.print(parts.getString
+                                   ("partNum")); %>">
+                    <input type="Submit" name="Submit" value="Add Qty">
+                </form></td>
                 <td>
                 <form method ="get" action="InventoryEdit.jsp">
                     <input type="hidden" name="partNum"
                            value="<% out.print(parts.getString
                                    ("partNum")); %>">
-                    <input type="Submit" name="Submit" value="Edit">
+                    <input type="Submit" name="Submit" value="Edit Inv">
                 </form></td>
             </tr>
             <%      } 
@@ -60,7 +69,7 @@
         </table>
         <br />
         <FORM METHOD="LINK" ACTION="InventoryAdd.jsp">
-            <INPUT TYPE="submit" VALUE="Add Inventory">
+            <INPUT TYPE="submit" VALUE="Add New Inventory">
         </FORM>
     </body>
 </html>
