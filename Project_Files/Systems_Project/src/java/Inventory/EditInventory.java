@@ -21,6 +21,7 @@ public class EditInventory {
     private String partCost;
     private String partPrice;
     private String partQuantity;
+    private String quantityAdd;
     
     public EditInventory() {
     }
@@ -33,6 +34,19 @@ public class EditInventory {
                 + "', manufacturer = '" + getPartManufacturer()
                 + "', cost = '" + getPartCost() + "', price = '"
                 + getPartPrice() + "', quantity = '" + getPartQuantity()
+                + "' where partNum = '" + getItemNumber() + "';");
+                            
+        }
+        catch (SQLException ex) {
+                    ex.printStackTrace();
+                } 
+       }
+     
+     public void doAddQuantity() throws SQLException, ClassNotFoundException {
+        Statement dbInitializer = Login.dbInitializer();
+        try {
+        dbInitializer.executeUpdate("update parts set quantity = quantity + '" 
+                + getQuantityAdd()
                 + "' where partNum = '" + getItemNumber() + "';");
                             
         }
@@ -137,5 +151,19 @@ public class EditInventory {
      */
     public void setPartQuantity(String partQuantity) {
         this.partQuantity = partQuantity;
+    }
+
+    /**
+     * @return the quantityAdd
+     */
+    public String getQuantityAdd() {
+        return quantityAdd;
+    }
+
+    /**
+     * @param quantityAdd the quantityAdd to set
+     */
+    public void setQuantityAdd(String quantityAdd) {
+        this.quantityAdd = quantityAdd;
     }
 }

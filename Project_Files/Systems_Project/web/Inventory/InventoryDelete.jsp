@@ -26,10 +26,10 @@
                 
                 // Search for parts list
                 try {
-                    ResultSet parts = dbInitializer.executeQuery("select * from "
-                            + "parts " 
-                            + "where partNum = " + request.getParameter("partNum")
-                            + ";");
+                    ResultSet parts = dbInitializer.executeQuery
+                            ("select * from parts " 
+                            + "where partNum = " + request.getParameter
+                            ("partNum") + ";");
                     
                     // Display part
                     while (parts.next()) { %>

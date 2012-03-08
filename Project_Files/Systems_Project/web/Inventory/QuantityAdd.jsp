@@ -22,10 +22,9 @@
                 
                 // Search for parts list
                 try {
-                    ResultSet parts = dbInitializer.executeQuery("select * from "
-                            + "parts " 
-                            + "where partNum = " + request.getParameter("partNum")
-                            + ";");
+                    ResultSet parts = dbInitializer.executeQuery
+                            ("select * from parts where partNum = "
+                            + request.getParameter("partNum") + ";");
                     
                     // Display part
                     while (parts.next()) { %>
@@ -35,13 +34,14 @@
        Manufacturer: <% out.print(parts.getString("manufacturer")); %> <br />
        Cost: <% out.print(parts.getString("cost")); %> <br />
        Price: <% out.print(parts.getString("price")); %> <br />
-       Quantity: <% out.print(parts.getString("quantity")); %> <br /> <br />
+       Current Quantity: <% out.print(parts.getString("quantity")); %> <br /> <br />
        
-       <form method ="get" action="DeleteInventoryCheck.jsp">
+       <form method ="get" action="AddQuantityCheck.jsp">
+                    Amount to Add:
+                    <input type = "text" name = "quantityAdd" /><br />
                     <input type="hidden" name="itemNumber"
-                           value="<% out.print(parts.getString
-                                   ("partNum")); %>">
-                    <input type="Submit" name="Submit" value="Delete Part">
+                        value="<% out.print(parts.getString("partNum")); %>">
+                    <input type="Submit" name="Submit" value="Add Quantity">
        </form> <br />
                     <%      } 
                   }

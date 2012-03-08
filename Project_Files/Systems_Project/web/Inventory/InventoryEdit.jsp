@@ -22,10 +22,9 @@
                 
                 // Search for parts list
                 try {
-                    ResultSet parts = dbInitializer.executeQuery("select * from "
-                            + "parts " 
-                            + "where partNum = " + request.getParameter("partNum")
-                            + ";");
+                    ResultSet parts = dbInitializer.executeQuery
+                            ("select * from parts where partNum = " +
+                            request.getParameter("partNum") + ";");
                     
                     // Display part
                     while (parts.next()) { %>
@@ -52,7 +51,8 @@
                    value ="<% out.print(parts.getString("price")); %>"/><br />
             Quantity:
             <input type = "text" name = "partQuantity"
-                   value ="<% out.print(parts.getString("quantity")); %>"/><br />
+                   value ="<% out.print(parts.getString("quantity")); %>"/>
+            <br />
             <p><input type = "submit" name = "Submit"
                       value = "Edit" />
                 <input type = "reset" value = "Reset" />
