@@ -115,7 +115,7 @@ public class EditInventory {
      * @return the partCost
      */
     public String getPartCost() {
-        return partCost;
+        return partCost.trim();
     }
 
     /**
@@ -129,7 +129,7 @@ public class EditInventory {
      * @return the partPrice
      */
     public String getPartPrice() {
-        return partPrice;
+        return partPrice.trim();
     }
 
     /**
