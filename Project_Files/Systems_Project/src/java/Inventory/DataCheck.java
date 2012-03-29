@@ -6,7 +6,7 @@ package Inventory;
 
 /**
  *
- * @author mshank
+ * @author Matthew Shank
  */
 
 public class DataCheck {
