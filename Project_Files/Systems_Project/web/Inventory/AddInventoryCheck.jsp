@@ -2,6 +2,7 @@
     Document   : AddInventoryCheck
     Created on : Feb 26, 2012, 8:55:05 PM
     Author     : Matthew Shank
+   
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,9 +20,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Confirm Added Inventory</title>
+        <link rel="stylesheet" type="text/css" href="../CSS/MCwebsite.css">
+        <title> Motor City Repairs - Confirm Added Inventory </title>
     </head>
     <body>
+    <div id="main">
+      <div id="header1">
+               <br />
+            <b> Motor City Repairs - Confirm Added Inventory </b>
+       </div>
+       <div id="indexCenter">
+            <br />
+            <br />
+            <br />
         <% 
         boolean able = DataCheckId.doubleCheck(request.getParameter
                 ("partCost"));
@@ -45,5 +56,10 @@
         <FORM METHOD="LINK" ACTION="InventoryList.jsp">
             <INPUT TYPE="submit" VALUE="Return to Inventory List">
         </FORM>
-    </body>
+       </div>  
+        <div id="footer">
+            <br/><h4>&copy;2012 Motor City Repairs </h4>
+        </div>
+     </div>    
+   </body>
 </html>

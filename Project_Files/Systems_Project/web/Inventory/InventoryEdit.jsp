@@ -14,10 +14,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Edit Inventory</title>
-    </head>
-    <body>
-        <h1>Edit Inventory Page</h1>
+        <link rel="stylesheet" type="text/css" href="../CSS/MCwebsite.css">
+        <title> Motor City Repairs - Edit Inventory </title>
+     </head>
+   <body>
+    <div id="main">
+      <div id="header1">
+               <br />
+            <b> Motor City Repairs -Edit Inventory Page </b>
+       </div>
+       <div id="indexCenter">
+            <br />
+            <br />
+            <br />
+       
         <%  Statement dbInitializer = Login.dbInitializer();
                 
                 // Search for parts list
@@ -71,5 +81,10 @@
                     ex.printStackTrace();
                 }  %>
          
-    </body>
+   </div>  
+        <div id="footer">
+            <br/><h4>&copy;2012 Motor City Repairs </h4>
+        </div>
+     </div>    
+   </body>
 </html>

@@ -15,12 +15,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Delete Part</title>
+        <link rel="stylesheet" type="text/css" href="../CSS/MCwebsite.css">
+        <title>Motor City Repairs - Delete Part</title>
     </head>
     <body>
-        <h1>Warning!</h1>
-        Deleting a part from the database cannot be reversed.
-        Are you sure you want to delete this part? <br /> <br />
+    <div id="main">
+      <div id="header1">
+               <br />
+            <b> Motor City Repairs - Delete Part</b>
+       </div>
+       <div id="indexCenter">
+            <br />
+            <br />
+        <h1 style = "color: red" > Warning!!! </h1>
+        <h2>Deleting a part from the database cannot be reversed.</h2> 
+        <h2> Are you sure you want to delete this part? </h2>  <br /> <br />
         
         <%  Statement dbInitializer = Login.dbInitializer();
                 
@@ -56,5 +65,10 @@
        <FORM METHOD="LINK" ACTION="InventoryList.jsp">
             <INPUT TYPE="submit" VALUE="Return to Inventory List">
        </FORM>
-    </body>
+    </div>  
+        <div id="footer">
+            <br/><h4>&copy;2012 Motor City Repairs </h4>
+        </div>
+     </div>    
+   </body>
 </html>

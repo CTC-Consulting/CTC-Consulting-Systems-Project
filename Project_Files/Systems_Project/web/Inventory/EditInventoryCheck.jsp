@@ -19,9 +19,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Confirm Added Inventory</title>
-    </head>
+        <link rel="stylesheet" type="text/css" href="../CSS/MCwebsite.css">
+        <title> Motor City Repairs -  Edit Inventory </title>
+     </head>
     <body>
+    <div id="main">
+      <div id="header1">
+               <br />
+            <b> Motor City Repairs - Confirm Edit Inventory </b>
+       </div>
+       <div id="indexCenter">
+            <br />
+            <br />
+            <br />
         <% 
         boolean able = DataCheckId.doubleCheck(request.getParameter
                 ("partCost"));
@@ -45,5 +55,10 @@
         <FORM METHOD="LINK" ACTION="InventoryList.jsp">
             <INPUT TYPE="submit" VALUE="Return to Inventory List">
         </FORM>
-    </body>
+    </div>  
+        <div id="footer">
+            <br/><h4>&copy;2012 Motor City Repairs </h4>
+        </div>
+     </div>    
+   </body>
 </html>

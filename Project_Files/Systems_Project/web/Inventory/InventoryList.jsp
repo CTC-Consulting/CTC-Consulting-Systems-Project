@@ -14,10 +14,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Inventory Control</title>
-    </head>
+        <link rel="stylesheet" type="text/css" href="../CSS/MCwebsite.css">
+        <title> Motor City Repairs - Inventory Control </title>
+      </head>
     <body>
-        <h1>Motor City Repairs Inventory</h1>
+    <div id="main">
+      <div id="header1">
+               <br />
+            <b> Motor City Repairs - Inventory </b>
+       </div>
+       <div id="indexCenter">
+            <br />
+            <br />
+            <br />
+       
         <table border="1">
             <tr>
                 <Th>Part #</th>
@@ -71,5 +81,10 @@
         <FORM METHOD="LINK" ACTION="InventoryAdd.jsp">
             <INPUT TYPE="submit" VALUE="Add New Inventory">
         </FORM>
-    </body>
+    </div>  
+        <div id="footer">
+            <br/><h4>&copy;2012 Motor City Repairs </h4>
+        </div>
+     </div>    
+   </body>
 </html>
