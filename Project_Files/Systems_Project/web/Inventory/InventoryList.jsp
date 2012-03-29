@@ -23,7 +23,7 @@
                <br />
             <b> Motor City Repairs - Inventory </b>
        </div>
-       <div id="indexCenter">
+       <div id="indexCenterIL">
             <br />
             <br />
             <br />

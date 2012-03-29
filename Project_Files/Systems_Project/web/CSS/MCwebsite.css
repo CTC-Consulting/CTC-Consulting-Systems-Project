@@ -60,7 +60,17 @@ body {
     border-width: 1px;
     border-color:#aaa;
     background: #f0e68c;
-    height: 490px;
+    height: 650px;
+    width: 1250px;
+}
+#indexCenterIL {
+    float: left;
+    text-align: left;
+    color:#2323FF;
+    border-width: 1px;
+    border-color:#aaa;
+    background: #f0e68c;
+    height: 890px;
     width: 1250px;
 }
 #footer {
@@ -81,7 +91,7 @@ input{
     font-family: Verdana,  Arial, sans-serif;
     padding: 6px;
     margin: 0.2em;
-    font-size: 12pt;
+    font-size: 10pt;
     color: #2323FF;
     font-weight: bold;
 }

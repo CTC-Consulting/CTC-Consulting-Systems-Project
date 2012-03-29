@@ -19,6 +19,8 @@
             <b> Motor City Repairs - Add Inventory</b>
        </div>
        <div id="indexCenter">
+           <br />
+           <br />
             <form method ="get" action ="AddInventoryCheck.jsp">
            <table border="0" cellspacing="2" cellpadding="2">
             <tbody>
