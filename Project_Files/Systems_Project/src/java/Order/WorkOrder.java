@@ -15,8 +15,7 @@ import java.sql.*;
 
 public class WorkOrder {
     
-    private String invoiceNum;
-    private static String location;
+    private String location;
     private String address;
     private String phone;
     private String manager;
@@ -24,14 +23,15 @@ public class WorkOrder {
     private String password;
     private String serviceName;
     private int id;
-    private int service_id;
+    public int service_id;
     private double charge;
     private String detail;
     private String emp_id;
     private String firstName;
     private String lastName;
     private double rate;
-    
+    public double total;
+   
     public WorkOrder () {     
     }
     
@@ -70,56 +70,32 @@ public class WorkOrder {
         }
     }
      
-          public  void checkLocationb() throws SQLException, ClassNotFoundException {
-        Statement statement = Login.dbInitializer();
-        ResultSet rs = statement.executeQuery("select * from Locations where invoiceNum = '" 
-                + getInvoiceNum() + "';" );
-         while (rs.next()) {
-         setLocation(rs.getString("location")); 
-         setAddress(rs.getString("address")); 
-         setPhone(rs.getString("phone")); 
-         setManager(rs.getString("manager")); 
-        }
-    }
-
-    public String getInvoiceNum() {
-        return invoiceNum;
-    }
-
-    public void setInvoiceNum(String invoiceNum) {
-        this.invoiceNum = invoiceNum;
-    }
-     
       public void checkServiceId() throws SQLException, ClassNotFoundException {
         Statement statement = Login.dbInitializer();
-    //    int [] array = new int [11];
-    //    for(int j = 0; j < 11; j++) {
-   //      j = getService_id();
-        ResultSet rs = statement.executeQuery("select * from Services where service_id = '" 
-                + getService_id() + "';" );  
-     //   ResultSetMetaData rsMetaData = rs.getMetaData();
-    //    for(int i =1; i <=rsMetaData.getColumnCount(); i++)
-     //       System.out.printf("%-12s\t", rsMetaData.getColumnName(i) );
-     //       System.out.println();
+        ResultSet rs = statement.executeQuery("select service_id, serviceName, detail, charge from Services where service_id = '" 
+                + service_id + "';" );  
+        ResultSetMetaData rsmd = rs.getMetaData();   
         
-         while (rs.next()) {
-         setService_id(rs.getInt("service_id")); 
-         setServiceName(rs.getString("serviceName")); 
-         setCharge(rs.getDouble("charge")); 
-         setDetail(rs.getString("detail")); 
-     //    for(int i =1; i<=rsMetaData.getColumnCount(); i++)
-    //         System.out.printf("%-12s\t", rs.getObject(i));
-    //     System.out.println();
-             //this example is from java book page 1303
-    //  }
-        }
-    }
-      
+        while (rs.next()) {
+            int service_id = rs.getInt(1);
+            
+            int [] sid = new int [11];
+            for(int i = 0; i < sid.length; i++){
+                sid[i] = service_id;
+                 setServiceName(rs.getString("serviceName")); 
+                 setCharge(rs.getDouble("charge")); 
+                 setDetail(rs.getString("detail")); 
+            }
+            
+            total +=rs.getDouble("charge");
+        
+      }
+      }
 
     /**
      * @return the location
      */
-    public static  String getLocation() {
+    public String getLocation() {
         return location;
     }
 
@@ -203,7 +179,7 @@ public class WorkOrder {
     /**
      * @return the serviceName
      */
-    public String getServiceName() {
+   public String getServiceName() {
         return serviceName;
     }
 
@@ -211,8 +187,8 @@ public class WorkOrder {
      * @param serviceName the serviceName to set
      */
     public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
+       this.serviceName = serviceName;
+   }
 
     /**
      * @return the id
@@ -231,16 +207,16 @@ public class WorkOrder {
     /**
      * @return the service_id
      */
-    public int getService_id() {
-        return service_id;
-    }
+ //   public int getService_id() {
+   //     return service_id;
+ //   }
 
     /**
      * @param service_id the service_id to set
      */
-    public void setService_id(int service_id) {
-        this.service_id = service_id;
-    }
+ //   public void setService_id(int service_id) {
+ //       this.service_id = service_id;
+ //   }
 
     /**
      * @return the charge
@@ -259,9 +235,9 @@ public class WorkOrder {
     /**
      * @return the detail
      */
-    public String getDetail() {
+   public String getDetail() {
         return detail;
-    }
+   }
 
     /**
      * @param detail the detail to set

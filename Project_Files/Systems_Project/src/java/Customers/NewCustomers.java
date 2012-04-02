@@ -22,7 +22,7 @@ public class NewCustomers {
     private String city;
     private String state;
     private String zip;
-    private String DayPhone;
+    private String dayPhone;
     private String nightPhone;
     private String moble;
     private String userId;
@@ -151,14 +151,14 @@ public class NewCustomers {
      * @return the DayPhone
      */
     public String getDayPhone() {
-        return DayPhone;
+        return dayPhone;
     }
 
     /**
      * @param DayPhone the DayPhone to set
      */
     public void setDayPhone(String DayPhone) {
-        this.DayPhone = DayPhone;
+        this.dayPhone = dayPhone;
     }
 
     /**

@@ -1,6 +1,6 @@
 <%-- 
     Document   : Customers
-    Created on : Feb 13, 2012, 3:15:10 AM
+    Created on : Feb 13, 2012, 1:09:22 AM
     Author     : Xia
 --%>
 
@@ -13,27 +13,27 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Create a new customer</title>
     </head>
     <body>
         <form method = "get" action = "Customerscheck.jsp">
          <h3>Please enter the following customer information: </h3>
      <p> <label> * Customer ID: </label>
-         <input type="text" name="acctNo" class="input" required/> </p>
+         <input type="text" name="cus_id"  auto_increment required > </p>
      <p> <label> * First Name:</label>
-         <input type = "text" name = "firstName" required /> </p>
+         <input type = "text" name = "firstName" required > </p>
      <p> <label> * Last Name: </label>
-         <input type = "text" name = "lastName" required /> </p>
+         <input type = "text" name = "lastName" required > </p>
      <p> <label> * Street: </label>
-         <input type = "text" name = "street" required />  </p>
+         <input type = "text" name = "street" required >  </p>
       <p><label> * City: </label>
-         <input type = "text" name = "city"  required />  </p>
+         <input type = "text" name = "city"  required >  </p>
       <p><label> * State: </label>
-         <input type = "text" name = "state" required /> </p>
-      <p><label> Zip: </label>
-         <input type = "text" name = "zip"  required /> </p>
-     <p> <label> Daytime Phone: </label>
-         <input type = "text" name = "dayPhone" required /> </p>
+         <input type = "text" name = "state" required > </p>
+      <p><label> * Zip: </label>
+         <input type = "text" name = "zip"  required > </p>
+     <p> <label> * Daytime Phone: </label>
+         <input type = "text" name = "dayPhone" required > </p>
      <p><label> Nighttime Phone: </label>
         <input type = "text" name = "nightPhone" /> </p>
          <p> <label> Cell Number: </label>
@@ -45,6 +45,8 @@
          <p> * required fields </p>
         </form>
         
+         
         
-    </body>
+        
+</body>
 </html>

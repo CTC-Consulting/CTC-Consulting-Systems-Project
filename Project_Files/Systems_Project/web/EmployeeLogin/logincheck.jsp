@@ -1,6 +1,6 @@
 <%-- 
     Document   : logincheck
-    Created on : Feb 13, 2012, 3:17:40 AM
+    Created on : Feb 13, 2012, 12:49:40 AM
     Author     : Xia
 --%>
 
@@ -18,11 +18,17 @@ scope = "session" ></jsp:useBean>
         <title>Check Employee Login</title>
     </head>
     <body>
+        
+        <% if( ( (Login.getUserId() == null)&&(Login.getPassword() == null)) )
+              { %>
+        <% out.print("Please enter the user name and password!"); %>
+        <% } else {%>
+        
         <% if (Login.testUsernameAndPassword() == false) { %>
          <form id="form_1" method="post" action="logincheck.jsp">
             
-             <p style="text-align:center; font-weight:bold; color:red;">
-                  Login Information Incorrect, please try again!</p>
+          <p style="text-align:center; font-weight:bold; color:red;">
+                  Login Information Incorrect, please try again:</p>
                                         
           <h3>Sign Into Your Account</h3>
           <p>    User ID: </p>
@@ -36,17 +42,35 @@ scope = "session" ></jsp:useBean>
           <% } else { %>
                 <% if (Login.checkAccess() == false) { %>
                 
-            <%--   <form id="GetRegistration" method="post" action="GetRegistration.jsp">
-                <input type="hidden" name="userId" value="<%= login.getUserId() %>" />
-                <input type="hidden" name="password" value="<%= login.getPassword() %>" />
-                <input class="userButtom" type="submit" value="Update your Account Information!" />
+                 <p style="text-align:center; font-weight:bold; font-size:20px; color:black;">
+                     Welcome to Motor City Auto Repair!</p>
+                
+               
+                <br />
+                <br />
+                <form method="post" action="../Customers/CustomerSearch.jsp">
+                <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
+                <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
+                <input class="userButtom" type="submit" value="Search or update customer"> 
                 </form> 
-                --%>
-                 <p style="text-align:center; color:black;">Under instruction, check back later!</p>
+                
+                
                  <%--for fixing this part, go to userAccount.jsp in JavaIII project!
+                 <form id="deposit" method="post" action="deposit.jsp">
+                 <input type="hidden" name="userId" value="<%= login.getUserId() %>" />
+                 <input type="hidden" name="password" value="<%= login.getPassword() %>" />
+                 <input class="userButtom" type="submit" value="Make a Deposit" />
+                 </form>
                  --%>
                   <% } else { %>
                   <p style="text-align:center; font-weight:bold; font-size:20px; color:green;">Admin Control Panel</p>
+                  
+                  <form id="Employee" method="post" action="Employee.jsp">
+                  <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
+                  <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
+                  <input class="userButtom" type="submit" value="Create a new employee"> 
+                  </form> 
+          <% } %>
           <% } %>
       <% } %>
     </body>
