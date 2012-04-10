@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 
 <%@page import = "java.sql.*;" %>
-
+<%@page import = "java.text.*;" %>
 <%@page import = "Location.NewLocation" %>
 <%@page import = "InvoicePk.LineItem" %>
 <%@page import = "EmployeeLogin.Login" %>
@@ -51,9 +51,10 @@
     </head>
     <body>
         <% int gTotal = 0; %>
-        
-       <% 
-     
+      <%--  <% DecimalFormat df = new DecimalFormat("#,###.##"); %> --%>
+      <% NumberFormat df = NumberFormat.getCurrencyInstance();   %>
+
+     <%
       if (InvoiceCheck.intCheck(request.getParameter("invoiceNum")) == false) {
           out.print("Please click your browser's 'BACK' button and enter a numeric value for Invoice Number.");
                           }
@@ -64,7 +65,8 @@
         Statement statement = Invoice.dbInitializer();
         try {
         ResultSet rs = statement.executeQuery("select * from lineitem left join "
-                + "employees on lineitem.emp_id = employees.emp_id where invoiceNum = " 
+                + "employees on lineitem.emp_id = employees.emp_id left join services on "
+                + "lineitem.service_id = services.service_id where invoiceNum = " 
                +  Invoice.getInvoiceNum()  +  ";" );
         
         if (!(rs.next())) {
@@ -79,23 +81,26 @@
           
         <%-- Location --%>
          <%Invoice.getInfo();%> 
-        <h2><%= Invoice.getLocation()%></h2>
+        <h3><%= Invoice.getLocation()%></h3>
         
+        <%--  Garage Address    --%>
+    <pre>  
+    <% Invoice.storeLocation();%>    
+    <%= Invoice.getAddress()%>  
+    Big City, GA 30097  
+    <%= Invoice.getPhone()%> 
+    </pre>
+<h5>It is not fixed until it's fixed </h5>            
+
+   
+  
+ 
         
-<h5>It is not fixed until it's fixed </h5>
+
 <h1 style = "text-align: center; color: gray"> Invoice </h1>
 
         
-<%--  Garage Address    --%>
-
-    
-  
-    <pre>  
-    <% Invoice.storeLocation();%>        
-    <%= Invoice.getAddress()%>
-    Big City, GA 30097
-    <%= Invoice.getPhone()%>  
-    </pre>    
+   
 
 
     
@@ -105,7 +110,7 @@
 	Date: <%= Invoice.getTimeOut()%>
 	</pre>
 
-    <pre>TO:    <%= Invoice.getFirst_Name()%> <%= Invoice.getLast_Name()%>
+    <pre>TO:     <%= Invoice.getFirst_Name()%> <%= Invoice.getLast_Name()%>
         <%= Invoice.getStreet()%>
         <%= Invoice.getCity()%> <%= Invoice.getState()%> <%= Invoice.getZip()%>
     </pre>               
@@ -148,13 +153,13 @@
          <td>   <%out.print(rs.getString("line_Total"));%> </td>
 
        </tr>
-       <% gTotal += Integer.valueOf(rs.getString("line_Total")); %> 
+       <% gTotal += Double.valueOf(rs.getString("line_Total")); %> 
     <%   } %>
     <%--Grand Total:--%>
     
     
       
-        <tr> <td colspan = "4">Invoice Total:</td> <td>  <%out.print(gTotal);%>  </td></tr>  
+        <tr> <td colspan = "4">Invoice Total:</td> <td>  <%out.print(df.format(gTotal));%>  </td></tr>  
       
    </table>    
 
