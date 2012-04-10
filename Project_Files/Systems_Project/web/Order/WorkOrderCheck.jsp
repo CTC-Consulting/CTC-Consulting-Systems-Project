@@ -23,7 +23,8 @@
         <title>Work Order Check</title>
     </head>
     <body >
-      <% if((WorkOrder.getEmp_id() == null) && (WorkOrder.getId() == 0 )&& (WorkOrder.service_id == 0)) {
+      <% WorkOrder.total = 0;
+      if((WorkOrder.getEmp_id() == null) && (WorkOrder.getId() == 0 )&& (WorkOrder.service_id == 0)) {
          out.print("All fills are requried!"); 
                      }  else { %>
                 
