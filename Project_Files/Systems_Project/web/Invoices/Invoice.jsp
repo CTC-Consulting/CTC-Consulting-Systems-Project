@@ -67,7 +67,7 @@
         ResultSet rs = statement.executeQuery("select * from lineitem left join "
                 + "employees on lineitem.emp_id = employees.emp_id left join services on "
                 + "lineitem.service_id = services.service_id where invoiceNum = " 
-               +  Invoice.getInvoiceNum()  +  ";" );
+               +  Invoice.getInvoiceNum()  +  ";" ); 
         
         if (!(rs.next())) {
            out.print("The Invoice Number you entered does not exist. Please click your browser's 'BACK' button and retry."); 
@@ -109,8 +109,10 @@
 	Invoice Number: <%= Invoice.getInvoiceNum()%>
 	Date: <%= Invoice.getTimeOut()%>
 	</pre>
-
-    <pre>TO:     <%= Invoice.getFirst_Name()%> <%= Invoice.getLast_Name()%>
+        
+        
+    <pre>TO:  <%Invoice.getInfo();%> 
+        <%= Invoice.getFirst_Name()%> <%= Invoice.getLast_Name()%>
         <%= Invoice.getStreet()%>
         <%= Invoice.getCity()%> <%= Invoice.getState()%> <%= Invoice.getZip()%>
     </pre>               
