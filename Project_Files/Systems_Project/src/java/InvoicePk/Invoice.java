@@ -38,8 +38,6 @@ public class Invoice {
     private String line_ID;
     private String date;
     private String service_ID;
-
-    
     private String part;
     private String parts_qty;
     private String parts_Price;
@@ -70,7 +68,8 @@ public class Invoice {
       
        try {
         Statement statement = Invoice.dbInitializer();
-        ResultSet rs = statement.executeQuery("select * from workorder where invoiceNum = '" 
+        ResultSet rs = statement.executeQuery("select * from workorder left join customers on workorder.cus_id"
+                + "= customers.cus_id where invoiceNum = '" 
                 + getInvoiceNum() +  "';" );
         
         
@@ -79,16 +78,16 @@ public class Invoice {
          setLocation(rs.getString("location")); 
          setTimeIn(rs.getString("TimeIn")); 
          setVin(rs.getString("vin")); 
-         setCheckIn_Emp(rs.getString("checkIn_Emp")); 
+        // setCheckIn_Emp(rs.getString("checkIn_Emp")); 
          setCus_id(rs.getString("cus_id")); 
-         setFirst_Name(rs.getString("first_Name")); 
-         setLast_Name(rs.getString("last_Name")); 
+         setFirst_Name(rs.getString("firstName")); 
+         setLast_Name(rs.getString("lastName")); 
          setStreet(rs.getString("street")); 
          setCity(rs.getString("city"));
          setState(rs.getString("state"));
          setZip(rs.getString("zip"));
          setEmp_id(rs.getString("emp_id"));
-         setDescription(rs.getString("description"));
+        // setDescription(rs.getString("description"));
          setTotal(rs.getString("total"));
          setBalance(rs.getString("balance"));
          setStatus(rs.getString("status"));
@@ -295,7 +294,7 @@ public class Invoice {
 
     public String getCheckIn_Emp() {
         return checkIn_Emp;
-    }
+    } 
 
     public String getCity() {
         return city;
@@ -367,7 +366,7 @@ public class Invoice {
 
     public void setCheckIn_Emp(String checkIn_Emp) {
         this.checkIn_Emp = checkIn_Emp;
-    }
+    }     
 
     public void setCity(String city) {
         this.city = city;

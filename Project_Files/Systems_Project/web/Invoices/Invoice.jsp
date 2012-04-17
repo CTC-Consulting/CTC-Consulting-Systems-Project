@@ -9,28 +9,12 @@
 
 <%@page import = "java.sql.*;" %>
 <%@page import = "java.text.*;" %>
-<%@page import = "Location.NewLocation" %>
-<%@page import = "InvoicePk.LineItem" %>
 <%@page import = "EmployeeLogin.Login" %>
-<%@page import = "Order.WorkOrder" %>
 <%@page import = "InvoicePk.InvoiceCheck" %>
 
 
-
-<jsp:useBean id = "NewLocation" 
-      class = "Location.NewLocation" scope = "session">
-</jsp:useBean>
-
 <jsp:useBean id = "Invoice" 
       class = "InvoicePk.Invoice" scope = "session">
-</jsp:useBean>
-
-<jsp:useBean id = "WorkOrder" 
-      class = "Order.WorkOrder" scope = "session">
-</jsp:useBean>
-
-<jsp:useBean id = "LineItem" 
-      class = "InvoicePk.LineItem" scope = "session">
 </jsp:useBean>
 
 <jsp:useBean id = "InvoiceCheck" 
@@ -39,9 +23,6 @@
 
 
 <jsp:setProperty name = "Invoice" property = "*" />
-<jsp:setProperty name = "NewLocation" property = "*"  />
-<jsp:setProperty name = "WorkOrder" property = "*" />
-<jsp:setProperty name = "LineItem" property = "*" /> 
 <jsp:setProperty name = "InvoiceCheck" property = "*" />
 
 <html>
@@ -50,10 +31,11 @@
         <title>Invoice</title>
     </head>
     <body>
-        <% int gTotal = 0; %>
+      <% int gTotal = 0; %>
       <%--  <% DecimalFormat df = new DecimalFormat("#,###.##"); %> --%>
       <% NumberFormat df = NumberFormat.getCurrencyInstance();   %>
-
+      
+      <%-- Validate Invoicenum parameter and query for lineItem data if appropo --%>
      <%
       if (InvoiceCheck.intCheck(request.getParameter("invoiceNum")) == false) {
           out.print("Please click your browser's 'BACK' button and enter a numeric value for Invoice Number.");
@@ -67,7 +49,7 @@
         ResultSet rs = statement.executeQuery("select * from lineitem left join "
                 + "employees on lineitem.emp_id = employees.emp_id left join services on "
                 + "lineitem.service_id = services.service_id where invoiceNum = " 
-               +  Invoice.getInvoiceNum()  +  ";" );
+                +  Invoice.getInvoiceNum()  +  " ORDER BY detail ;" ); 
         
         if (!(rs.next())) {
            out.print("The Invoice Number you entered does not exist. Please click your browser's 'BACK' button and retry."); 
@@ -75,8 +57,7 @@
                else 
                    
         rs.beforeFirst();          
-        if (rs.next()) {
-            
+        if (rs.next()) {           
           %> 
           
         <%-- Location --%>
@@ -90,37 +71,27 @@
     Big City, GA 30097  
     <%= Invoice.getPhone()%> 
     </pre>
-<h5>It is not fixed until it's fixed </h5>            
-
-   
-  
- 
-        
+<h5>It is not fixed until it's fixed </h5>                  
 
 <h1 style = "text-align: center; color: gray"> Invoice </h1>
 
-        
-   
-
-
     
-<%--  Invoice number, customer ID and address    --%>
+<%--  Invoice number, date, customer ID and address    --%>
 	<pre style = "text-align: right">
 	Invoice Number: <%= Invoice.getInvoiceNum()%>
 	Date: <%= Invoice.getTimeOut()%>
 	</pre>
-
-    <pre>TO:     <%= Invoice.getFirst_Name()%> <%= Invoice.getLast_Name()%>
+        
+        
+    <pre>TO:  <%Invoice.getInfo();%> 
+        <%= Invoice.getFirst_Name()%> <%= Invoice.getLast_Name()%>
         <%= Invoice.getStreet()%>
         <%= Invoice.getCity()%> <%= Invoice.getState()%> <%= Invoice.getZip()%>
     </pre>               
-                  
-	
-
-  
+                   
 
    
- <%--  Result Table    --%>
+ <%--  Result Table uses while loop to get local result set  rs --%>
 <table border = "2" width = "1100">
     
 <tr >
@@ -130,17 +101,12 @@
 <th>RATE/Price</th>
 <th>AMOUNT</th>
 </tr>
-
- 
-   
-        <%
-       rs.beforeFirst();
+    
+        <%  
+      rs.beforeFirst();
       while (rs.next()) {%>
       
-       <%--  setLine_ID(rs.getString("line_ID")); 
-         setDate(rs.getString("date")); 
-         setInvoiceNum(rs.getString("invoiceNum")); 
-         setService_ID(rs.getString("Service_Id")); --%>
+                   
        <tr> <td> <% out.print(rs.getString("description")); %> </td>
          <%-- setPart(rs.getString("part")); 
          setParts_qty(rs.getString("parts_qty")); 
@@ -151,52 +117,36 @@
          <td>   <%out.print(rs.getString("rate"));%> </td>
          <%-- setLabor_Total(rs.getString("labor_Total"));--%>
          <td>   <%out.print(rs.getString("line_Total"));%> </td>
-
        </tr>
+       
+       <%--Grand Total:--%>
+       
        <% gTotal += Double.valueOf(rs.getString("line_Total")); %> 
-    <%   } %>
-    <%--Grand Total:--%>
-    
-    
-      
-        <tr> <td colspan = "4">Invoice Total:</td> <td>  <%out.print(df.format(gTotal));%>  </td></tr>  
-      
+    <%   } %>     
+        <tr> <td colspan = "4">Invoice Total:</td> <td>  <%out.print(df.format(gTotal));%>  </td></tr>       
    </table>    
 
          
 <h5 style = "text-align: left">Make all checks payable to Motor City Repairs  </h5>
 <h5 style = "text-align: left">Total due in 15 days. Overdue accounts subject to a service charge of 1% per month.  </h5>
 <h4 style = "text-align: center">Thank you for your business</h4>         
+          
        
-     
-       
-<%                  }
-
-           }                                     
+<%       }
+   }                                     
                
                       catch (SQLException ex) {
                    ex.printStackTrace();
-                   }  
-  
-           } 
+                   
+           }  
+   } 
            
 %>  
                            
-                                         
-
-
-                                                     
-
-      
- 
-    
-
-
-
-
-
-
-
+                                     
 
     </body>
 </html>
+
+
+
