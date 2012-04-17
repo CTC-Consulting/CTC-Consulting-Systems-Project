@@ -23,14 +23,13 @@ body {
     border-width: 1px;
     border-color:#aaa;
     border-top-style:solid;
-    height: 25%;
     background: #2323FF;
     color: #ffffff;
     font-size: 30px;
     text-shadow: 2px 2px 3px #000;
     text-align: center;
     height: 100px;
-    width: 1250px;
+    
 }
 
 #indexLeftColumn {
@@ -39,8 +38,8 @@ body {
     text-align:center;
     background: #f0e68c;
     color:#2323FF;
-    height: 485px;
-    width: 400px;
+    height: 700px;
+    width: 30%;
   }
 
 #indexRightColumn1 {
@@ -50,8 +49,8 @@ body {
     border-width: 1px;
     border-color:#aaa;
     background: #f0e68c;
-    height: 485px;
-    width: 850px;
+    height: 700px;
+    width: 70%;
 }
 #indexCenter {
     float: left;
@@ -60,8 +59,9 @@ body {
     border-width: 1px;
     border-color:#aaa;
     background: #f0e68c;
-    height: 650px;
-    width: 1250px;
+    height: 700px;
+    width: 100%;
+    
 }
 #indexCenterIL {
     float: left;
@@ -71,21 +71,22 @@ body {
     border-color:#aaa;
     background: #f0e68c;
     height: 890px;
-    width: 1250px;
+    width: 100%;
+    
 }
 #footer {
-    clear: left;
+    clear: both;
     background: #f0e68c; 
     border-top-style:solid;
     text-decoration: none;
     color:#2323FF;
-    
     border-width: 1px;
     border-color:#aaa;
     text-align: center;
     font-weight: lighter;
     height: 60px;
-    width: 1250px;
+    width: 100%;
+    
 }
 input{
     font-family: Verdana,  Arial, sans-serif;
@@ -101,8 +102,7 @@ td{
     color: #2323FF;
     font-weight: lighter;
 }
-a:link {color: #000080;}
-a:hover{color:red;}
+
 h1{font-size: xx-large;}
 h2{font-size: large;}
 h3{font-size: medium; }

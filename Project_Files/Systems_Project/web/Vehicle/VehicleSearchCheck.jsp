@@ -2,6 +2,7 @@
     Document   : VehicleSearchCheck
     Created on : Feb 21, 2012, 8:57:19 PM
     Author     : Xia
+ Update to code: JStone added CSS code to jsp on  Apr 11, 2012
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -23,11 +24,23 @@ scope = "session" ></jsp:useBean>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Vehicle Search Check</title>
+        <link rel="stylesheet" type="text/css" href="../CSS/MCwebsite.css">
+        <title>Motor City Repairs - Vehicle Search Check</title>
     </head>
     <body>
+        <div id="main">
+        <div id="header1">
+            <br>
+            <b> Motor City Repairs - Vehicle Search </b>
+        </div>
+       <div id="indexCenter">
+           <br>
+           <br>
+           <br>
+        
          <% if(NewVehicle.getVin1() == null) { %>
-         <% out.print("Please select or enter the vehicle number for the customer!"); %>
+         <% out.print("Please click your browser's 'BACK' button"+
+                 " and select or enter the vehicle number for the customer!"); %>
          <% } else {%> 
         
          <% if(NewVehicle.checkInfo() == false) { %>
@@ -59,5 +72,12 @@ scope = "session" ></jsp:useBean>
         </form>
         <% } %>
         <% } %>
-    </body>
+   
+       
+      </div>  
+        <div id="footer">
+            <br/><h4>&copy;2012 Motor City Repairs </h4>
+        </div>
+     </div>    
+   </body>
 </html>

@@ -2,6 +2,7 @@
     Document   : logincheck
     Created on : Feb 13, 2012, 12:49:40 AM
     Author     : Xia
+ Update to code: JStone added CSS code to jsp on  Apr 11, 2012
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,13 +16,24 @@ scope = "session" ></jsp:useBean>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Check Employee Login</title>
+        <link rel="stylesheet" type="text/css" href="../CSS/MCwebsite.css">
+        <title>Motor City Repairs - Login Check </title>
     </head>
     <body>
+      <div id="main">
+      <div id="header1">
+         <br>
+         <b> Welcome to the Motor City Repairs Application </b>
+      </div> 
+      <div id="indexCenter">
+         <br>
+         <br>
+         <br>
         
         <% if( ( (Login.getUserId() == null)&&(Login.getPassword() == null)) )
               { %>
-        <% out.print("Please enter the user name and password!"); %>
+        <% out.print("Please click your browser's 'BACK' button "
+                + "and enter the user name and password!"); %>
         <% } else {%>
         
         <% if (Login.testUsernameAndPassword() == false) { %>
@@ -44,10 +56,9 @@ scope = "session" ></jsp:useBean>
                 
                  <p style="text-align:center; font-weight:bold; font-size:20px; color:black;">
                      Welcome to Motor City Auto Repair!</p>
-                
-               
-                <br />
-                <br />
+      
+                <br>
+                <br>
                 <form method="post" action="../Customers/CustomerSearch.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
@@ -73,5 +84,10 @@ scope = "session" ></jsp:useBean>
           <% } %>
           <% } %>
       <% } %>
-    </body>
+     </div>  
+         <div id="footer">
+            <br><h4>&copy;2012 Motor City Repairs </h4>
+         </div>
+     </div>    
+   </body>
 </html>

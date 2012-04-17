@@ -2,6 +2,7 @@
     Document   : CustomerSearchcheck
     Created on : Feb 17, 2012, 1:13:29 PM
     Author     : Xia
+    Update to code: JStone added CSS code to jsp on  Apr 11, 2012
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,9 +23,19 @@ scope = "session" ></jsp:useBean>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Search Check</title>
+        <link rel="stylesheet" type="text/css" href="../CSS/MCwebsite.css">
+        <title>Motor City Repairs - Customer Search Check</title>
     </head>
-    <body>
+   <body>
+     <div id="main">
+        <div id="header1">
+            <br>
+            <b> Motor City Repairs - Customer Search  </b>
+        </div>
+       <div id="indexCenterIL">
+           <br>
+           <br>
+           <br>
         
       <%-- if ( (CustomerSearch.getFirstName1() == null)&&(CustomerSearch.getLastName1() == null)) 
               { %>
@@ -72,7 +83,7 @@ scope = "session" ></jsp:useBean>
          <p> <label> Cell Number: </label>
          <input type = "text" name = "moble1" value ="<%=CustomerSearch.getMoble()%>">  </p>
          <p>
-         <h3>please click the update button to update the customer information :</h3>
+         <h3>Please click the update button to update the customer information :</h3>
          <input type = "submit" name = "submit" value = "Update">
              <input type = "reset" value = "Reset">
          </form>
@@ -96,5 +107,10 @@ scope = "session" ></jsp:useBean>
         <%--  }  --%>
         
        
-    </body>
+     </div>  
+        <div id="footer">
+            <br/><h4>&copy;2012 Motor City Repairs </h4>
+        </div>
+     </div>    
+   </body>
 </html>
