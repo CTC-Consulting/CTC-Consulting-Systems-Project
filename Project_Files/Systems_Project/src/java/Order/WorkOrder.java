@@ -12,10 +12,18 @@ package Order;
 import EmployeeLogin.Login;
 import java.sql.*;
 
+import java.util.*;
+import java.text.SimpleDateFormat;
+import Customers.CustomerSearch;
+import Customers.NewCustomers;
+//import Customers.CustomerUpdate;
+
+
+
 
 public class WorkOrder {
     
-    private String location;
+    public String location;
     private String address;
     private String phone;
     private String manager;
@@ -31,10 +39,14 @@ public class WorkOrder {
     private String lastName;
     private double rate;
     public double total;
+    public String vin;
+    public int cus_id;
+    private int InvoiceNum;
+    public int autoIncKeyFromFunc;
    
     public WorkOrder () {     
     }
-    
+
      public boolean checkValid() throws SQLException, ClassNotFoundException {
         boolean test = false;        
         Statement dbInitializer = Login.dbInitializer();
@@ -73,7 +85,7 @@ public class WorkOrder {
       public void checkServiceId() throws SQLException, ClassNotFoundException {
         Statement statement = Login.dbInitializer();
         ResultSet rs = statement.executeQuery("select service_id, serviceName, detail, charge from Services where service_id = '" 
-                + service_id + "';" );  
+                + service_id + "';" );
         ResultSetMetaData rsmd = rs.getMetaData();   
         
         while (rs.next()) {
@@ -88,10 +100,99 @@ public class WorkOrder {
             }
             
             total +=rs.getDouble("charge");
+            
         
       }
+      
       }
+      
+    private static String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
 
+    /**
+     * @return the DATE_FORMAT_NOW
+     */
+    public static String getDATE_FORMAT_NOW() {
+        return DATE_FORMAT_NOW;
+    }
+
+    /**
+     * @param aDATE_FORMAT_NOW the DATE_FORMAT_NOW to set
+     */
+    public static void setDATE_FORMAT_NOW(String aDATE_FORMAT_NOW) {
+        DATE_FORMAT_NOW = aDATE_FORMAT_NOW;
+    }
+    
+    public static String now() {
+    Calendar cal = Calendar.getInstance();
+    SimpleDateFormat sdf = new SimpleDateFormat(getDATE_FORMAT_NOW());
+    return sdf.format(cal.getTime());
+     }
+
+    public void doCreateWorkOrder() throws SQLException, ClassNotFoundException {
+       ResultSet rs = null;
+       try {
+         Statement stmt = Login.dbInitializer();
+        
+         stmt.executeUpdate("insert into workOrder(location, TimeIn, vin, cus_id, emp_id, total, balance,status)"
+                 + " values('" + getLocation() + "','" + now() + "','" + getVin() + "','" + getCus_id() + "','" +
+                 getEmp_id() + "', '" + total + "', '" + total + "','" + "open" + "');");
+         System.out.println( " " + getCus_id());
+         
+      //   int autoIncKeyFromFunc = -1;
+         rs = stmt.executeQuery("SELECT LAST_INSERT_ID()");
+         if (rs.next()) {
+         autoIncKeyFromFunc = rs.getInt(1);
+         } else {
+        // throw an exception from here
+         }
+
+        rs.close();
+
+       System.out.println("Key returned from " +
+                       "'SELECT LAST_INSERT_ID()': " +
+                       autoIncKeyFromFunc);
+         }
+        catch (SQLException ex) {
+            System.out.println("*************************************************************");
+                    ex.printStackTrace();
+                } 
+       }
+    
+  /*  public void doCreateLineItem() throws SQLException, ClassNotFoundException {
+        Statement dbInitializer = Login.dbInitializer();
+        try {
+         parts_Total = (parts_qty * parts_Price);  
+         labor_Total = (hrs_qty * rate);
+         line_Total = (parts_Total + labor_Total)
+         dbInitializer.executeUpdate("insert into lineItem(date, invoiceNum,,service_Id, description, part, part_qty, "
+                 + "part_Price,parts_Total, emp_id, hrs_qty, rate, labor_Total, line_Total) values ('" + now() + "', '" 
+                 + getInvoiceNum() + "','" + service_id + "','" + description + "','" + part + "','" + parts_qty +"','"
+                 + parts_Price + "','" + part_Total + "','"  + getEmp_id() + "', '" + hrs_qty + "', '" + rate + "', '" 
+                 + labor_Total + "', '" + line_Total +  "');");
+         
+         
+            
+        }
+        catch (SQLException ex) {
+                    ex.printStackTrace();
+                } 
+       }
+       * 
+       */
+    
+    /**
+     * @return the cus_id
+     */
+    public int getCus_id() {
+        return cus_id;
+    }
+
+    /**
+     * @param cus_id the cus_id to set
+     */
+    public void setCus_id(int cus_id) {
+        this.cus_id = cus_id;
+    }
     /**
      * @return the location
      */
@@ -302,6 +403,35 @@ public class WorkOrder {
         this.rate = rate;
     }
 
+    /**
+     * @return the vin
+     */
+    public String getVin() {
+        return vin;
+    }
+
+    /**
+     * @param vin the vin to set
+     */
+    public void setVin(String vin) {
+        this.vin = vin;
+    }
+
+    /**
+     * @return the InvoiceNum
+     */
+    public int getInvoiceNum() {
+        return InvoiceNum;
+    }
+
+    /**
+     * @param InvoiceNum the InvoiceNum to set
+     */
+    public void setInvoiceNum(int InvoiceNum) {
+        this.InvoiceNum = InvoiceNum;
+    }
+
+    
 }
 
 

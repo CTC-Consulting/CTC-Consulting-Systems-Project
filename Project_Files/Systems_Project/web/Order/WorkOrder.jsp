@@ -11,6 +11,22 @@
       class = "Order.WorkOrder" scope = "session"></jsp:useBean>
 <jsp:setProperty name = "WorkOrder" property = "*" />
 
+<%@page import = "Customers.CustomerSearch" %>
+<jsp:useBean id = "CustomerSearch" 
+      class = "Customers.CustomerSearch" scope = "session"></jsp:useBean>
+<jsp:setProperty name = "CustomerSearch" property = "*" />
+
+<jsp:useBean id = "NewCustomers" 
+      class = "Customers.NewCustomers" scope = "session"></jsp:useBean>
+<jsp:setProperty name = "NewCustomers" property = "*" />
+
+<%@page import = "Vehicle.NewVehicle" %>
+<jsp:useBean id = "NewVehicle" 
+      class = "Vehicle.NewVehicle" scope = "session"></jsp:useBean>
+<jsp:setProperty name = "NewVehicle" property = "*" />
+
+
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,7 +36,12 @@
    
         <form method = "get" action="WorkOrderCheck.jsp" >
       <p> <%= new java.util.Date() %> </p>
-      
+      <% CustomerSearch.cus_id = NewVehicle.getCus_id(); 
+         WorkOrder.cus_id = CustomerSearch.getCus_id();
+         CustomerSearch.getInfo();
+         CustomerSearch.checkVin();
+         WorkOrder.vin = CustomerSearch.getVin();
+        %>
       <p><label>Please enter your employee ID:</label>
           <input type="text" name="emp_id" requried> </p>
       

@@ -9,9 +9,9 @@
 
 <%@page import = "Customers.NewCustomers" %>
 
-<jsp:useBean id = "NewCustomersId" 
+<jsp:useBean id = "NewCustomers" 
       class = "Customers.NewCustomers" scope = "session"></jsp:useBean>
-<jsp:setProperty name = "NewCustomersId" property = "*" />
+<jsp:setProperty name = "NewCustomers" property = "*" />
 <html>
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -29,11 +29,18 @@
             <br />
             <br />
 
-       <% NewCustomersId.doCreate();%>
-       <%  System.out.print(NewCustomersId.getFirstName() + " " +
-                NewCustomersId.getLastName() + " " +
-                " is now registered in the Motor City Customers database!");
-           %>
+       <% NewCustomers.doCreate();
+          NewCustomers.cus_id = NewCustomers.autoIncKeyFromFunc; %>
+       <h3><% out.print(NewCustomers.getFirstName() + " " +
+                NewCustomers.getLastName() + " " + 
+                " is now registered in the Motor City Customers database!"); %> </h3>
+       
+                <br />
+                <br />
+                <br />
+           <form method="post" action="../Vehicle/vehicle.jsp">
+           <input class="userButtom" type="submit" value="Register Vehicle"> 
+           </form> 
             
     </div>  
         <div id="footer">

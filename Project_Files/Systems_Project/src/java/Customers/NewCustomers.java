@@ -15,7 +15,6 @@ import EmployeeLogin.Login;
 
 public class NewCustomers {
     
-    private String cus_id;
     private String firstName;
     private String lastName;
     private String street;
@@ -27,6 +26,16 @@ public class NewCustomers {
     private String moble;
     private String userId;
     private String password;
+    public int cus_id;
+    private String vin;
+    private String make;
+    private String model;
+    private String myear;
+    private String exterior;
+    private String interior;
+    public int autoIncKeyFromFunc;
+    
+    
     
     public NewCustomers() {
     }
@@ -43,26 +52,43 @@ public class NewCustomers {
     }
     
     public void doCreate() throws SQLException, ClassNotFoundException {
-        Statement dbInitializer = Login.dbInitializer();
-        dbInitializer.executeUpdate("insert into Customers values ('" + getCus_id() + "', '" + getFirstName() + "', '" + getLastName() + "', '" + getStreet() + "', '"
-                + getCity() + "', '" + getState() + "', '" + getZip() + "', '" + getDayPhone() + "', '"
+        ResultSet rs = null;
+        try {
+        Statement stmt = Login.dbInitializer();
+        stmt.executeUpdate("insert into Customers(firstName, lastName, street, city, state, zip, dayPhone, nightPhone, moble)values ('" + getFirstName() + "', '" + getLastName() + "', '" + getStreet() + "', '"
+                + getCity() + "', '" + getState() + "', '" + getZip() + "' , '" + getDayPhone() + "', '"
                 + getNightPhone()+ "', '"  + getMoble() + "');") ; 
-    }
+        
+         rs = stmt.executeQuery("SELECT LAST_INSERT_ID()");
+         if (rs.next()) {
+            autoIncKeyFromFunc = rs.getInt(1);
+            setCus_id(rs.getInt("cus_id"));
+            setFirstName(rs.getString("firstName"));
+            setLastName(rs.getString("lastName"));
+            setStreet(rs.getString("street"));
+            setCity(rs.getString("city"));
+            setState(rs.getString("state"));
+            setZip(rs.getString("zip"));
+            setDayPhone(rs.getString("dayPhone"));
+            setNightPhone(rs.getString("nightPhone"));
+            setMoble(rs.getString("moble"));
+            
+         } else {
+        // throw an exception from here
+         }
 
-    /**
-     * @return the cus_id
-     */
-    public String getCus_id() {
-        return cus_id;
+        rs.close();
+        System.out.println("This is the customer Id number: " + getCus_id());
+         System.out.println("Key returned from " +
+                       "'SELECT LAST_INSERT_ID()': " +
+                       autoIncKeyFromFunc);
+        }
+          
+        catch (SQLException ex) {
+            System.out.println("*************************************************************");
+                    ex.printStackTrace();
+                } 
     }
-
-    /**
-     * @param cus_id the cus_id to set
-     */
-    public void setCus_id(String cus_id) {
-        this.cus_id = cus_id;
-    }
-
     /**
      * @return the firstName
      */
@@ -157,7 +183,7 @@ public class NewCustomers {
     /**
      * @param DayPhone the DayPhone to set
      */
-    public void setDayPhone(String DayPhone) {
+    public void setDayPhone(String dayPhone) {
         this.dayPhone = dayPhone;
     }
 
@@ -215,6 +241,104 @@ public class NewCustomers {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the cus_id
+     */
+    public int getCus_id() {
+        return cus_id;
+    }
+
+    /**
+     * @param cus_id the cus_id to set
+     */
+    public void setCus_id(int cus_id) {
+        this.cus_id = cus_id;
+    }
+
+    /**
+     * @return the vin
+     */
+    public String getVin() {
+        return vin;
+    }
+
+    /**
+     * @param vin the vin to set
+     */
+    public void setVin(String vin) {
+        this.vin = vin;
+    }
+
+    /**
+     * @return the make
+     */
+    public String getMake() {
+        return make;
+    }
+
+    /**
+     * @param make the make to set
+     */
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    /**
+     * @return the model
+     */
+    public String getModel() {
+        return model;
+    }
+
+    /**
+     * @param model the model to set
+     */
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    /**
+     * @return the myear
+     */
+    public String getMyear() {
+        return myear;
+    }
+
+    /**
+     * @param myear the myear to set
+     */
+    public void setMyear(String myear) {
+        this.myear = myear;
+    }
+
+    /**
+     * @return the exterior
+     */
+    public String getExterior() {
+        return exterior;
+    }
+
+    /**
+     * @param exterior the exterior to set
+     */
+    public void setExterior(String exterior) {
+        this.exterior = exterior;
+    }
+
+    /**
+     * @return the interior
+     */
+    public String getInterior() {
+        return interior;
+    }
+
+    /**
+     * @param interior the interior to set
+     */
+    public void setInterior(String interior) {
+        this.interior = interior;
     }
 
 }

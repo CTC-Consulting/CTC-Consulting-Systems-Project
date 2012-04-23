@@ -5,6 +5,7 @@
     Update to code: JStone added CSS code to jsp on  Apr 11, 2012
 --%>
 
+<%@page import="Vehicle.NewVehicle"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
  <%@ page import = "Customers.CustomerSearch" %>
@@ -14,6 +15,10 @@
 scope = "session" ></jsp:useBean>
 <jsp:setProperty name="CustomerSearch" property="*" />
 
+<%@page import = "Vehicle.NewVehicle" %>
+<jsp:useBean id = "NewVehicle" 
+      class = "Vehicle.NewVehicle" scope = "session"></jsp:useBean>
+<jsp:setProperty name = "NewVehicle" property = "*" />
 
 <html>
     <head>
@@ -49,6 +54,7 @@ scope = "session" ></jsp:useBean>
          <p> <input type = "submit" name = "Submit" value = "Submit">
              <input type = "reset" name ="Reset" value = "Reset" ></p>
          
+         <% CustomerSearch.cus_id = NewVehicle.getCus_id(); %>
        </form>
          </div>
           <div id="footer">

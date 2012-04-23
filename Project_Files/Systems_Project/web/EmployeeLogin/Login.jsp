@@ -45,16 +45,7 @@ scope = "session" ></jsp:useBean>
            <p> <input type="submit" name="Submit" value="Submit" >
                   <input type = "reset" value = "Reset" > </p> 
        </form>
-<%--        <p  style="text-align:center; font-weight:bold; color:green;">
-                  Login here</p>
-                                        
-          <h3>Sign Into Your Account</h3>
-          <p>    User ID: </p>
-          <input type="text" name="userId" class="input" >
-          <p>    Password:</p>
-          <input type="text" name="password" class="input" >
-          <p><input type="submit" name="Submit" value="Submit" />
-    <input type = "reset" value = "Reset"  ></p> --%>
+
         </div>  
         <div id="footer">
            <br><h4>&copy;2012 Motor City Repairs </h4>

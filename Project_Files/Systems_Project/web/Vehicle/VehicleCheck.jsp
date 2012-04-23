@@ -11,6 +11,10 @@
 <jsp:useBean id = "NewVehicle" 
       class = "Vehicle.NewVehicle" scope = "session"></jsp:useBean>
 <jsp:setProperty name = "NewVehicle" property = "*" />
+<%@page import = "Customers.NewCustomers" %>
+<jsp:useBean id = "NewCustomers" class = "Customers.NewCustomers"
+scope = "session" ></jsp:useBean>
+<jsp:setProperty name="NewCustomers" property="*" />
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,16 +32,21 @@
            <br>
            <br>
            <br> 
-        
-       <% NewVehicle.doCreate();%>
-       <% out.print("The vehicle number "+ NewVehicle.getVin() +
+       <% NewVehicle.cus_id = NewCustomers.getCus_id(); %>
+       <% NewVehicle.doCreate(); %>
+       <% out.print("The vehicle number "+ NewCustomers.getVin() +
                   "  is now registered in the Motor City Vehicle database!");
         %>
       
+        <br/>  <br/>  <br/>  <br/>
+       <form method="post" action="../Order/WorkOrder.jsp">
+       <input class="userButtom" type="submit" value="Start the work order"> 
+        </form> 
     </div>  
         <div id="footer">
             <br/><h4>&copy;2012 Motor City Repairs </h4>
         </div>
+        
      </div>    
    </body>
 </html>

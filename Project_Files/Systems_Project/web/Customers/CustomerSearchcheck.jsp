@@ -17,9 +17,9 @@ scope = "session" ></jsp:useBean>
 scope = "session" ></jsp:useBean>
 <jsp:setProperty name = "Login" property = "*"/>
 <%@page import = "Vehicle.NewVehicle" %>
-<jsp:useBean id = "NewVehicleId" 
+<jsp:useBean id = "NewVehicle" 
       class = "Vehicle.NewVehicle" scope = "session"></jsp:useBean>
-<jsp:setProperty name = "NewVehicleId" property = "*" />
+<jsp:setProperty name = "NewVehicle" property = "*" />
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,20 +37,10 @@ scope = "session" ></jsp:useBean>
            <br>
            <br>
         
-      <%-- if ( (CustomerSearch.getFirstName1() == null)&&(CustomerSearch.getLastName1() == null)) 
-              { %>
-        <% out.print("Please enter the customer information."); %>
-        <% } else  %>
-        
-        <% if( ( (CustomerSearch.getFirstName1() == null)&&(CustomerSearch.getLastName1() != null))
-              ||((CustomerSearch.getFirstName1() != null)&&(CustomerSearch.getLastName1() == null)) )
-              { %>
-        <% out.print("Both first name and last name are requried!"); %>
-        <% } else {--%>
-        
+        <% CustomerSearch.cus_id = NewVehicle.getCus_id(); %>
         <% if (CustomerSearch.checkInfo() == false) { %>
         
-        <% out.print(" " + CustomerSearch.getLastName1() + " " + CustomerSearch.getFirstName1() + " is not in our database, please try again!"); %>
+        <% out.print(" " + CustomerSearch.getLastName() + " " + CustomerSearch.getFirstName() + " is not in our database, please try again!"); %>
         <br><br><br>
          <form method="post" action="../Customers/Customers.jsp">
          <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
@@ -60,36 +50,33 @@ scope = "session" ></jsp:useBean>
         <% } else {%>   
         <% CustomerSearch.getInfo(); %>
          
-        <form name ="form1" method = "get" action = "CustomersUpdatecheck.jsp">
-         <h3>Customer information: </h3>
-     <p> <label> * Customer ID:</label>
-         <input type = "text" name = "cus_id1" value = "<%=CustomerSearch.getCus_id()%>" readonly /> </p> 
+        <form method = "get" action = "CustomerUpdatecheck.jsp">
      <p> <label> * First Name:</label>
-         <input type = "text" name = "firstName1" value = "<%=CustomerSearch.getFirstName()%>" > </p>
+         <input type = "text" name = "firstName" value = "<%=CustomerSearch.getFirstName()%>" > </p>
      <p> <label> * Last Name: </label>
-         <input type = "text" name = "lastName1" value ="<%=CustomerSearch.getLastName()%>" > </p>
+         <input type = "text" name = "lastName" value ="<%=CustomerSearch.getLastName()%>" > </p>
      <p> <label> * Street: </label>
-         <input type = "text" name = "street1" value ="<%=CustomerSearch.getStreet()%>" >  </p>
+         <input type = "text" name = "street" value ="<%=CustomerSearch.getStreet()%>" >  </p>
       <p><label> * City: </label>
-         <input type = "text" name = "city1"  value="<%=CustomerSearch.getCity()%>"> </p>
+         <input type = "text" name = "city"  value="<%=CustomerSearch.getCity()%>"> </p>
       <p><label> * State: </label>
-         <input type = "text" name = "state1" value ="<%=CustomerSearch.getState()%>"> </p>
+         <input type = "text" name = "state" value ="<%=CustomerSearch.getState()%>"> </p>
       <p><label> * Zip: </label>
-         <input type = "text" name = "zip1"  value ="<%=CustomerSearch.getZip()%>" > </p>
+         <input type = "text" name = "zip"  value ="<%=CustomerSearch.getZip()%>" > </p>
      <p> <label> * Daytime Phone: </label>
-         <input type = "text" name = "dayPhone1" value="<%=CustomerSearch.getDayPhone()%>"> </p>
+         <input type = "text" name = "dayPhone" value="<%=CustomerSearch.getDayPhone()%>"> </p>
      <p><label> Nighttime Phone: </label>
-        <input type = "text" name = "nightPhone1" value="<%=CustomerSearch.getNightPhone()%>" > </p>
+        <input type = "text" name = "nightPhone" value="<%=CustomerSearch.getNightPhone()%>" > </p>
          <p> <label> Cell Number: </label>
-         <input type = "text" name = "moble1" value ="<%=CustomerSearch.getMoble()%>">  </p>
+         <input type = "text" name = "moble" value ="<%=CustomerSearch.getMoble()%>">  </p>
          <p>
          <h3>Please click the update button to update the customer information :</h3>
-         <input type = "submit" name = "submit" value = "Update">
-             <input type = "reset" value = "Reset">
+         <input type = "submit" name = "submit" value = "Update Now">
+         <input type = "reset" value = "Reset">
          </form>
          
           <% CustomerSearch.checkVin(); %>
-         <form method = "get" action = "../Vehicle/VehicleSearchCheck.jsp">
+          <form method = "get" action = "../Vehicle/VehicleSearchCheck.jsp">
          <p><label>Please select one of the following vehicle number for the above customer:</label>
              <input type="checkbox" name ="vin1" value="<%=CustomerSearch.getVin() %>">
               <%=CustomerSearch.getVin() %> 
@@ -97,14 +84,14 @@ scope = "session" ></jsp:useBean>
              <form method = "get" action = "../Vehicle/VehicleSearchCheck.jsp">
           <p> <label> OR please enter the vehicle number to create a new work order: </label>
               <input type = "text" name = "vin1">  
-              <input type = "submit" name = "submit" value = "Submit">
+              <input type = "submit" name = "submit" value = "Submit to create a work order">
               <input type = "reset" value = "Reset"></p>
           
           <br /> <br />
           </form>
         
         <%   }  %>
-        <%--  }  --%>
+       
         
        
      </div>  

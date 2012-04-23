@@ -148,7 +148,7 @@ public class Employee {
     /**
      * @return the rate
      */
-    public Double getRate() {
+    public double getRate() {
         return rate;
     }
 

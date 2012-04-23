@@ -7,9 +7,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import = "Customers.NewCustomers" %>
-<jsp:useBean id = "newCustomersId" 
+<jsp:useBean id = "NewCustomers" 
       class = "Customers.NewCustomers" scope = "session"></jsp:useBean>
-<jsp:setProperty name = "newCustomersId" property = "*" />
+<jsp:setProperty name = "NewCustomers" property = "*" />
 
 <html>
     <head>
@@ -32,21 +32,16 @@
    </div>
    <div id="indexRightColumn1">  
     <form method = "get" action = "Customerscheck.jsp">
+        <% NewCustomers.cus_id = NewCustomers.autoIncKeyFromFunc; %>
      <br />
      <table border="0" cellspacing="2" cellpadding="2">
           <br />
        <tbody>
-      <tr>
-         <td><h3> * Customer ID:</h3> </td>
-         <td> <input type="text" name="cus_id"  auto_increment required /> </td>
-         <td>  </td>
-         <td>  </td>
-        </tr>
      <tr>
         <td><h3> * First Name:</h3></td>
         <td ><input type = "text" name = "firstName" required /> </td>
         <td><h3> * Last Name: </h3></td>
-        <td> <input type = "text" name = "lastName" required >  </td>
+        <td> <input type = "text" name = "lastName" required />  </td>
        </tr>
      <tr>
         <td><h3> * Street:  </h3></td>
@@ -68,13 +63,13 @@
        <td><h3>* Daytime Phone: </h3></td>
        <td><input type = "text" name = "dayPhone" required /></td>
        <td><h3> Evening Phone: </h3> </td>
-       <td><input type = "text" name = "nightPhone"  required /> </td>
+       <td><input type = "text" name = "nightPhone"  > </td>
       </tr>
    <tr>
        <td></td>
        <td></td>
        <td><h3> Cell Number:  </h3></td>
-       <td><input type = "text" name = "moble"  required /></td>
+       <td><input type = "text" name = "moble"  ></td>
       </tr>
    <tr>
        <td>   </td>
@@ -90,35 +85,6 @@
     </tr>
    </tbody>
  </table>  
-          
- <%--        <h3>Please enter the following customer information: </h3>
-     <p> <label> * Customer ID: </label>
-         <input type="text" name="cus_id"  auto_increment required > </p>
-     <p> <label> * First Name:</label>
-         <input type = "text" name = "firstName" required > </p>
-     <p> <label> * Last Name: </label>
-         <input type = "text" name = "lastName" required > </p>
-     <p> <label> * Street: </label>
-         <input type = "text" name = "street" required >  </p>
-      <p><label> * City: </label>
-         <input type = "text" name = "city"  required >  </p>
-      <p><label> * State: </label>
-         <input type = "text" name = "state" required > </p>
-      <p><label> * Zip: </label>
-         <input type = "text" name = "zip"  required > </p>
-     <p> <label> * Daytime Phone: </label>
-         <input type = "text" name = "dayPhone" required > </p>
-     <p><label> Nighttime Phone: </label>
-        <input type = "text" name = "nightPhone" /> </p>
-         <p> <label> Cell Number: </label>
-         <input type = "text" name = "moble"  />  </p>
-
-         <p> <input type = "submit" name = "Submit" value = "Submit">
-             <input type = "reset" value = "Reset"></p>
-         
-         <p> * required fields </p>
---%>      
-        
     </form>
      </div>
       <div id="footer">
