@@ -31,7 +31,8 @@
         <title>Invoice</title>
     </head>
     <body>
-      <% int gTotal = 0; %>
+      <% double gTotal = 0; %>
+      <% double cBalance = 0; %>
       <%--  <% DecimalFormat df = new DecimalFormat("#,###.##"); %> --%>
       <% NumberFormat df = NumberFormat.getCurrencyInstance();   %>
       
@@ -48,8 +49,9 @@
         try {
         ResultSet rs = statement.executeQuery("select * from lineitem left join "
                 + "employees on lineitem.emp_id = employees.emp_id left join services on "
-                + "lineitem.service_id = services.service_id where invoiceNum = " 
-                +  Invoice.getInvoiceNum()  +  " ORDER BY detail ;" ); 
+                + "lineitem.service_id = services.service_id left join workorder on lineitem.invoicenum = "
+                + "workorder.invoicenum where lineitem.invoiceNum = " 
+                +  Invoice.getInvoiceNum()  +  ";" ); 
         
         if (!(rs.next())) {
            out.print("The Invoice Number you entered does not exist. Please click your browser's 'BACK' button and retry."); 
@@ -59,6 +61,8 @@
         rs.beforeFirst();          
         if (rs.next()) {           
           %> 
+          
+        
           
         <%-- Location --%>
          <%Invoice.getInfo();%> 
@@ -79,7 +83,7 @@
 <%--  Invoice number, date, customer ID and address    --%>
 	<pre style = "text-align: right">
 	Invoice Number: <%= Invoice.getInvoiceNum()%>
-	Date: <%= Invoice.getTimeOut()%>
+	Date: <%= Invoice.getTimeIn()%>
 	</pre>
         
         
@@ -94,10 +98,10 @@
  <%--  Result Table uses while loop to get local result set  rs --%>
 <table border = "2" width = "1100">
     
-<tr >
-<th >DESCRIPTION</TH>
+<tr>
+<th>DESCRIPTION</th>
 <th>TECHNICIAN</th>
-<th>HOURS/QTY</TH>
+<th>HOURS/QTY</th>
 <th>RATE/Price</th>
 <th>AMOUNT</th>
 </tr>
@@ -110,8 +114,10 @@
        <tr> <td> <% out.print(rs.getString("description")); %> </td>
          <%-- setPart(rs.getString("part")); 
          setParts_qty(rs.getString("parts_qty")); 
+         
          setParts_Price(rs.getString("parts_Price")); 
          setParts_Total(rs.getString("parts_Total")); --%>
+         
          <td>   <%out.print(rs.getString("lastname"));%> </td>
          <td>   <%out.print(rs.getString("hrs_qty"));%> </td>
          <td>   <%out.print(rs.getString("rate"));%> </td>
@@ -122,10 +128,19 @@
        <%--Grand Total:--%>
        
        <% gTotal += Double.valueOf(rs.getString("line_Total")); %> 
-    <%   } %>     
-        <tr> <td colspan = "4">Invoice Total:</td> <td>  <%out.print(df.format(gTotal));%>  </td></tr>       
+            <% cBalance = Double.valueOf( Invoice.getBalance()); %>  
+    <%   } %> 
+        <tr> <td colspan = "4">Invoice Total:</td> <td>  <%out.print(df.format(gTotal));%>  </td></tr>
+        <tr> <td colspan = "5"> </td></tr>
+        <tr> <td colspan = "4">Current Balance:</td> <td>  <%out.print(df.format(cBalance));%>  </td></tr>       
    </table>    
+                                            <br />
+                                            <br />
+   <FORM METHOD="post" ACTION="UpdateInvoice.jsp">
 
+<input type="hidden" name="invoiceNum" value="<%= request.getParameter("invoiceNum") %>">
+<INPUT TYPE="submit" VALUE="Update Invoice">
+</FORM>
          
 <h5 style = "text-align: left">Make all checks payable to Motor City Repairs  </h5>
 <h5 style = "text-align: left">Total due in 15 days. Overdue accounts subject to a service charge of 1% per month.  </h5>
