@@ -1,4 +1,4 @@
-<%-- 
+.<%-- 
     Document   : WorkOrder
     Created on : Feb 23, 2012, 9:35:59 PM
     Author     : Xia
@@ -10,6 +10,18 @@
 <jsp:useBean id = "WorkOrder" 
       class = "Order.WorkOrder" scope = "session"></jsp:useBean>
 <jsp:setProperty name = "WorkOrder" property = "*" />
+
+<%@page import = "Customers.CustomerSearch" %>
+<jsp:useBean id = "CustomerSearch"
+      class = "Customers.CustomerSearch" scope = "session"></jsp:useBean>
+<jsp:setProperty name = "CustomerSearch" property = "*" />
+<jsp:useBean id = "NewCustomers"
+      class = "Customers.NewCustomers" scope = "session"></jsp:useBean>
+<jsp:setProperty name = "NewCustomers" property = "*" />
+<%@page import = "Vehicle.NewVehicle" %>
+<jsp:useBean id = "NewVehicle"
+      class = "Vehicle.NewVehicle" scope = "session"></jsp:useBean>
+<jsp:setProperty name = "NewVehicle" property = "*" />
 
 <%@page import = "java.sql.*;" %>
 <%@page import = "javax.swing.*;" %>
