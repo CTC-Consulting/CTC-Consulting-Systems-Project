@@ -72,6 +72,22 @@ scope = "session" ></jsp:useBean>
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
                 <input class="userButtom" type="submit" value="Search or update customer"> 
                 </form> 
+                
+                <br>
+                <br>
+                <form method="post" action="../Inventory/InventoryList.jsp">
+                <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
+                <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
+                <input class="userButtom" type="submit" value="Inventory List"> 
+                </form> 
+                
+                <br>
+                <br>
+                <form method="post" action="../Invoices/InvoiceSearch.jsp">
+                <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
+                <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
+                <input class="userButtom" type="submit" value="Search Invoice"> 
+                </form> 
                   <% } else { %>
                   <p style="text-align:center; font-weight:bold; font-size:20px; color:green;">Admin Control Panel</p>
                   
@@ -95,6 +111,22 @@ scope = "session" ></jsp:useBean>
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
                 <input class="userButtom" type="submit" value="Search or update customer"> 
+                </form> 
+                
+                <br>
+                <br>
+                <form method="post" action="../Inventory/InventoryList.jsp">
+                <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
+                <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
+                <input class="userButtom" type="submit" value="Inventory List"> 
+                </form> 
+                
+                <br>
+                <br>
+                <form method="post" action="../Invoices/InvoiceSearch.jsp">
+                <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
+                <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
+                <input class="userButtom" type="submit" value="Search Invoice"> 
                 </form> 
                 </div>
           <% } %>

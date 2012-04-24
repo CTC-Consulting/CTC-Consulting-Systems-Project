@@ -43,6 +43,7 @@ public class WorkOrder {
     public int cus_id;
     private int InvoiceNum;
     public int autoIncKeyFromFunc;
+    
    
     public WorkOrder () {     
     }
