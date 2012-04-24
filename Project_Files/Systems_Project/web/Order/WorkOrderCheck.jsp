@@ -55,7 +55,7 @@
              <th><b>Charge </b></th>
              <th><b>Detail </b></th>
              <th><b>Quantity </b></th></tr>
-            <form method = "get" action="ConfirmWorkOrder.jsp" >
+            <form method = "get" action="ConformWorkOrder.jsp" >
             <tr> 
              <% 
              int total = 1;
@@ -71,7 +71,7 @@
                 <input type = "text" name = "<% out.print(serviceNameString); %>"   
                    value ="Labor"/></td><td>    
                 <input type = "text" name = "<% out.print(serviceChargeString); %>"   
-                   value ="Enter Rate Here"/></td><td>
+                   value ="<% WorkOrder.getRate(); %>"/></td><td>
                 <input type = "text" name = "<% out.print(serviceDetailString); %>"   
                    value ="Hourly Labor Charge"/></td><td>
                 <input type = "text" name = "<% out.print(serviceQtyString); %>"   

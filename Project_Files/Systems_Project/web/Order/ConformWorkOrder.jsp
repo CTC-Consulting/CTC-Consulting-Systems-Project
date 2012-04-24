@@ -18,6 +18,7 @@
 <jsp:setProperty name = "CustomerSearch" property = "*" />
 
 <%@page import= "java.sql.* " %>
+<%@page import = "EmployeeLogin.Login" %>
 
 <html>
     <head>
@@ -35,7 +36,38 @@
                 +"Your total is: " + WorkOrder.total + "<br/>"
                 + "Please bring this ticket to see our casher! "); %>  
                 <br/> <br/><br/>
-  
+    
+         <% String totalString = (request.getParameter("total"));
+         int total = Integer.parseInt(totalString); 
+         Statement dbInitializer = Login.dbInitializer();
+         for (int i=1; i <= total; i++) {
+             String serviceIdString = "serviceId" + i;
+             String serviceNameString = "serviceName" + i;
+             String serviceChargeString = "serviceCharge" + i;
+             String serviceDetailString = "serviceDetail" + i;
+             String serviceQtyString = "serviceQty" + i;
+             
+             try {
+        dbInitializer.executeUpdate("insert into lineitem (date, "
+                + "invoiceNum, Service_Id, description, "
+                + "parts_Total, emp_id, hrs_qty, rate) values ('" + 
+                WorkOrder.now() + "', '" + WorkOrder.autoIncKeyFromFunc + "', '"
+                + (request.getParameter(serviceIdString))
+                + "', '" + (request.getParameter(serviceDetailString))
+                + "', '" + (request.getParameter(serviceChargeString))
+                + "', '" + WorkOrder.getEmp_id()
+                + "', '" + (request.getParameter(serviceQtyString))
+                + "', '" + WorkOrder.getRate() + "');");
+            
+        }
+        catch (SQLException ex) {
+                    ex.printStackTrace();
+                } 
+         }
+         
+         
+         
+         %>
     <input type="button" value="Print this page" onClick="window.print()">
    
     <br />
