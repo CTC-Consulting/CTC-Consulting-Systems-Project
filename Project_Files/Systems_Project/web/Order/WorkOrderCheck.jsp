@@ -166,7 +166,7 @@
     
     <form method="get" action ="ConformWorkOrder.jsp">
     <input type="button" value="Print this page" onClick="window.print()">
-    <input type ="submit" value ="Conform Order" name="submit" >
+    <input type ="submit" value ="Confirm Order" name="submit" >
     </form>  --%>
 
    </body>
