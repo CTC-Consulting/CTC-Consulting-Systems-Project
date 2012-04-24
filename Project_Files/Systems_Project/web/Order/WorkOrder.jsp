@@ -1,4 +1,4 @@
-<%-- 
+.<%-- 
     Document   : WorkOrder
     Created on : Feb 23, 2012, 9:35:59 PM
     Author     : Xia
@@ -12,20 +12,21 @@
 <jsp:setProperty name = "WorkOrder" property = "*" />
 
 <%@page import = "Customers.CustomerSearch" %>
-<jsp:useBean id = "CustomerSearch" 
+<jsp:useBean id = "CustomerSearch"
       class = "Customers.CustomerSearch" scope = "session"></jsp:useBean>
 <jsp:setProperty name = "CustomerSearch" property = "*" />
-
-<jsp:useBean id = "NewCustomers" 
+<jsp:useBean id = "NewCustomers"
       class = "Customers.NewCustomers" scope = "session"></jsp:useBean>
 <jsp:setProperty name = "NewCustomers" property = "*" />
-
 <%@page import = "Vehicle.NewVehicle" %>
-<jsp:useBean id = "NewVehicle" 
+<jsp:useBean id = "NewVehicle"
       class = "Vehicle.NewVehicle" scope = "session"></jsp:useBean>
 <jsp:setProperty name = "NewVehicle" property = "*" />
 
-
+<%@page import = "java.sql.*;" %>
+<%@page import = "javax.swing.*;" %>
+<%@page import = "java.awt.*;" %>
+<%@page import = "EmployeeLogin.Login" %>
 
 <html>
     <head>
@@ -68,7 +69,52 @@
       <input type="checkbox" name ="service_id" value="10"> Major Services 4 cyl </br>
       <input type="checkbox" name ="service_id" value="11"> Major Services 6 cyl </br>
      </p>
-     
+     </br>
+     <label> * Parts used:(select all that apply) </label> </br>
+     <table>
+            <tr>
+       <%--     <Th>Part #</th>  --%>
+                <Th>Part</th>
+                <th>Description</th>
+                <th>Manufacturer</th>
+                <th>Cost</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            
+             
+            <%  Statement dbInitializer = Login.dbInitializer();
+                
+                // Search for parts list
+                try {
+                    ResultSet parts = dbInitializer.executeQuery
+                            ("select * from parts");
+                    
+                    // Display results to user
+                    while (parts.next()) { %>
+            <tr>
+      <%--      <td><% out.print(parts.getString("partNum")); %></td>  --%>
+                <td><% out.print(parts.getString("part")); %></td>
+                <td><% out.print(parts.getString("description")); %></td>
+                <td><% out.print(parts.getString("manufacturer")); %></td>
+                <td><% out.print(parts.getString("cost")); %></td>
+                <td><% out.print(parts.getString("price")); %></td>
+                <td><% out.print(parts.getString("quantity")); %></td>
+                <td>
+                <input type="checkbox" name="part_id"
+                           value="<% out.print(parts.getString
+                                   ("partNum")); %>"></td>
+            
+            </tr>
+                                   
+             <%      } 
+                  }
+                //  Catch exception for error
+                catch (SQLException ex) {
+                    ex.printStackTrace();
+                }  %>   
+       
+     </table>
      
      <input type="submit" name ="Submit" value="Submit" >
     </form>
