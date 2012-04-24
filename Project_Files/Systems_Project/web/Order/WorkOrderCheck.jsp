@@ -36,10 +36,10 @@
                 
        <p> <%= new java.util.Date() %> </p>
        
-       <p>Customer:
-          <%CustomerSearch.getInfo(); 
-          out.print(" " + CustomerSearch.getLastName1() + " , " + CustomerSearch.getFirstName1() 
-         + "<br /> Address: " + CustomerSearch.getStreet() + ", " + CustomerSearch.getCity() + " , " + CustomerSearch.getState() + " " + CustomerSearch.getZip());  %>
+       <p>
+          <% CustomerSearch.getInfo(); 
+          out.print(" " + CustomerSearch.getLastName() + " , " + CustomerSearch.getFirstName() 
+         + "<br /> " + CustomerSearch.getStreet() + ", " + CustomerSearch.getCity() + " , " + CustomerSearch.getState() + " " + CustomerSearch.getZip());  %>
         
         <p>  <% WorkOrder.checkEmp(); 
            out.print("Check in employee:  " + " " + WorkOrder.getLastName() + ", " +WorkOrder.getFirstName()); %> 
@@ -160,15 +160,10 @@
         </table> 
     </p>
     
-    <p align="right"><% out.print("Total " + WorkOrder.total); %>       
+    <p align="center"><% out.print("Total " + WorkOrder.total); %>       
     <% }%>
     
- <%--   
-    <p> I agree to have the above service in motor city repair, and will be responsible for the above fees.</br> <br/>
-        Customer Signature: ____________________________________________________
-        
-    </p>
-            
+    
     <form method="get" action ="ConformWorkOrder.jsp">
     <input type="button" value="Print this page" onClick="window.print()">
     <input type ="submit" value ="Conform Order" name="submit" >

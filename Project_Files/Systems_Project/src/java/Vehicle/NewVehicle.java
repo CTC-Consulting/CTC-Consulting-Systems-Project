@@ -11,6 +11,7 @@ package Vehicle;
 
 import java.sql.*;
 import EmployeeLogin.Login;
+import Customers.NewCustomers;
 
 public class NewVehicle {
     
@@ -23,8 +24,9 @@ public class NewVehicle {
     private String interior;
     private String userId;
     private String password;
-    private String cus_id;
-    private String cus_id1;
+    public int cus_id;
+    private int cus_id1;
+
     
     public NewVehicle() {
     
@@ -45,7 +47,8 @@ public class NewVehicle {
      public boolean checkInfo() throws SQLException, ClassNotFoundException {
         boolean test = false;        
         Statement dbInitializer = Login.dbInitializer();
-        ResultSet resultSet = dbInitializer.executeQuery("select * from Vehicle where vin = '" + getVin1() +  "'");
+        ResultSet resultSet = dbInitializer.executeQuery("select * from Vehicle where vin = '" + getVin1() + 
+                "'OR cus_id = '" + getCus_id() + "'");
         while (resultSet.next()) {
             test = true;
         }
@@ -53,11 +56,14 @@ public class NewVehicle {
     }
     
     public void doCreate() throws SQLException, ClassNotFoundException {
-        Statement dbInitializer = Login.dbInitializer();
-        dbInitializer.executeUpdate("insert into Vehicle values ('" + getCus_id() + "', '"  + getVin() + "', '" + getMake() + "', '" 
-                + getModel() + "', '" + getMyear() + "', '"
-                + getExterior() + "', '" + getInterior() + "');") ; 
+      
+        Statement stmt = Login.dbInitializer();
+        stmt.executeUpdate("insert into Vehicle(vin, cus_id, make, model, myear, exterior, interior)values ('" + getVin()  + "', '" + getCus_id() + "', '" + getMake() + "', '" 
+                + getModel() + "', '" + getMyear() + "', '" + getExterior() + "', '" + getInterior() + "');") ; 
+        System.out.println("This is the customer Id in new vehicle: " + getCus_id());
+        
     }
+    
     
      public void getInfo() throws SQLException, ClassNotFoundException {
         Statement statement = Login.dbInitializer();
@@ -65,7 +71,7 @@ public class NewVehicle {
                 + getVin1() + "';" );
       
         while (rs.next()) {
-         setCus_id(rs.getString("cus_id")); 
+    //     setCus_id(rs.getInt("cus_id"));
          setVin(rs.getString("vin")); 
          setMake(rs.getString("make")); 
          setModel(rs.getString("model")); 
@@ -203,31 +209,34 @@ public class NewVehicle {
         this.password = password;
     }
 
-    /**
-     * @return the cus_id
-     */
-    public String getCus_id() {
-        return cus_id;
-    }
-
-    /**
-     * @param cus_id the cus_id to set
-     */
-    public void setCus_id(String cus_id) {
-        this.cus_id = cus_id;
-    }
-
+    
     /**
      * @return the cus_id1
      */
-    public String getCus_id1() {
+    public int getCus_id1() {
         return cus_id1;
     }
 
     /**
      * @param cus_id1 the cus_id1 to set
      */
-    public void setCus_id1(String cus_id1) {
+    public void setCus_id1(int cus_id1) {
         this.cus_id1 = cus_id1;
     }
+
+    /**
+     * @return the cus_id
+     */
+    public int getCus_id() {
+        return cus_id;
+    }
+
+    /**
+     * @param cus_id the cus_id to set
+     */
+    public void setCus_id(int cus_id) {
+        this.cus_id = cus_id;
+    }
+
+   
 }

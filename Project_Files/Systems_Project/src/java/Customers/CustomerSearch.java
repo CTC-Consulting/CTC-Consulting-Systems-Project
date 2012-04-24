@@ -15,7 +15,7 @@ import Vehicle.NewVehicle;
 
 public class CustomerSearch {
     
-    private String cus_id;
+    public int cus_id;
     private String firstName;
     private String lastName;
     private String street;
@@ -28,7 +28,7 @@ public class CustomerSearch {
     private String userId;
     private String password;
     
-    private String cus_id1;
+    private int cus_id1;
     private String firstName1;
     private String lastName1;
     private String street1;
@@ -78,11 +78,12 @@ public class CustomerSearch {
        
         Statement statement = Login.dbInitializer();
         ResultSet rs = statement.executeQuery("select * from Customers where firstName = '" 
-                + getFirstName1() + " ' AND lastName = '" + getLastName1() + "';" );
+                + getFirstName1() + " ' AND lastName = '" + getLastName1() +
+                "' OR cus_id =  '" + getCus_id() +"';" );
         
         
         while (rs.next()) {
-         setCus_id(rs.getString("cus_id")); 
+         setCus_id(rs.getInt("cus_id")); 
          setFirstName(rs.getString("firstName")); 
          setLastName(rs.getString("lastName")); 
          setStreet(rs.getString("street")); 
@@ -103,12 +104,12 @@ public class CustomerSearch {
                 + getCus_id() +  "'");
         ResultSetMetaData rsmd = rSet.getMetaData();
         while (rSet.next()) {
-            String vid = rSet.getString("cus_id");
+            int vid = rSet.getInt("cus_id");
             int[] array = new int [10];
             for(int i =1; i <= rsmd.getColumnCount(); i ++)
             {
-               array[i] = Integer.parseInt(vid);
-               setCus_id(rSet.getString("cus_id")); 
+               array[i] = vid;
+               setCus_id(rSet.getInt("cus_id")); 
                setVin(rSet.getString("vin")); 
             }
         }
@@ -117,14 +118,14 @@ public class CustomerSearch {
     /**
      * @return the cus_id
      */
-    public String getCus_id() {
+    public int getCus_id() {
         return cus_id;
     }
 
     /**
      * @param cus_id the cus_id to set
      */
-    public void setCus_id(String cus_id) {
+    public void setCus_id(int cus_id) {
         this.cus_id = cus_id;
     }
 
@@ -285,14 +286,14 @@ public class CustomerSearch {
     /**
      * @return the cus_id1
      */
-    public String getCus_id1() {
+    public int getCus_id1() {
         return cus_id1;
     }
 
     /**
      * @param cus_id1 the cus_id1 to set
      */
-    public void setCus_id1(String cus_id1) {
+    public void setCus_id1(int cus_id1) {
         this.cus_id1 = cus_id1;
     }
 

@@ -15,7 +15,7 @@ import Customers.CustomerSearch;
 
 public class CustomerUpdate {
     
-    private String cus_id;
+    public int cus_id;
     private String firstName;
     private String lastName;
     private String street;
@@ -26,7 +26,7 @@ public class CustomerUpdate {
     private String nightPhone;
     private String moble;
    
-    private String cus_id1;
+    private int cus_id1;
     private String firstName1;
     private String lastName1;
     private String street1;
@@ -49,34 +49,34 @@ public class CustomerUpdate {
         
      Statement dbInitializer = Login.dbInitializer();
      
-     dbInitializer.executeUpdate("UPDATE Customers SET firstName = '" + getFirstName1() 
-             + "' where cus_id = '" + getCus_id1() + "';");
+     dbInitializer.executeUpdate("UPDATE Customers SET firstName = '" + getFirstName() 
+             + "' where cus_id = '" + getCus_id() + "';");
      
      
-    dbInitializer.executeUpdate("UPDATE Customers SET lastName = '" + getLastName1()
-                 + "' where cus_id = '" + getCus_id1() + "';");
+    dbInitializer.executeUpdate("UPDATE Customers SET lastName = '" + getLastName()
+                 + "' where cus_id = '" + getCus_id() + "';");
      
     
-    dbInitializer.executeUpdate("update Customers set street = '" + getStreet1() 
-                 + "' where cus_id = '" + getCus_id1() + "';");
+    dbInitializer.executeUpdate("update Customers set street = '" + getStreet() 
+                 + "' where cus_id = '" + getCus_id() + "';");
     
-    dbInitializer.executeUpdate("update Customers set state = '" + getState1() 
-                 + "' where cus_id = '" + getCus_id1() + "';");
+    dbInitializer.executeUpdate("update Customers set state = '" + getState() 
+                 + "' where cus_id = '" + getCus_id() + "';");
     
-     dbInitializer.executeUpdate("update Customers set city = '" + getCity1() 
-                 + "' where cus_id = '" + getCus_id1() + "';");
+     dbInitializer.executeUpdate("update Customers set city = '" + getCity() 
+                 + "' where cus_id = '" + getCus_id() + "';");
      
-     dbInitializer.executeUpdate("update Customers set zip = '" + getZip1() 
-                 + "'where cus_id = '" + getCus_id1() + "';");
+     dbInitializer.executeUpdate("update Customers set zip = '" + getZip() 
+                 + "'where cus_id = '" + getCus_id() + "';");
    
-     dbInitializer.executeUpdate("update Customers set dayPhone = '" + getDayPhone1() 
-                 + "' where cus_id = '" + getCus_id1() + "';");
+     dbInitializer.executeUpdate("update Customers set dayPhone = '" + getDayPhone() 
+                 + "' where cus_id = '" + getCus_id() + "';");
      
-     dbInitializer.executeUpdate("update Customers set nightPhone = '" + getNightPhone1() 
-                 + "' where cus_id = '" + getCus_id1() + "';");
+     dbInitializer.executeUpdate("update Customers set nightPhone = '" + getNightPhone() 
+                 + "' where cus_id = '" + getCus_id() + "';");
      
-     dbInitializer.executeUpdate("update Customers set moble = '" + getMoble1() 
-                 + "' where cus_id = '" + getCus_id1() + "';");
+     dbInitializer.executeUpdate("update Customers set moble = '" + getMoble() 
+                 + "' where cus_id = '" + getCus_id() + "';");
     
  
      
@@ -114,14 +114,14 @@ public class CustomerUpdate {
     /**
      * @return the cus_id1
      */
-    public String getCus_id1() {
+    public int getCus_id1() {
         return cus_id1;
     }
 
     /**
      * @param cus_id1 the cus_id1 to set
      */
-    public void setCus_id1(String cus_id1) {
+    public void setCus_id1(int cus_id1) {
         this.cus_id1 = cus_id1;
     }
 
@@ -254,14 +254,14 @@ public class CustomerUpdate {
     /**
      * @return the cus_id
      */
-    public String getCus_id() {
+    public int getCus_id() {
         return cus_id;
     }
 
     /**
      * @param cus_id the cus_id to set
      */
-    public void setCus_id(String cus_id) {
+    public void setCus_id(int cus_id) {
         this.cus_id = cus_id;
     }
 

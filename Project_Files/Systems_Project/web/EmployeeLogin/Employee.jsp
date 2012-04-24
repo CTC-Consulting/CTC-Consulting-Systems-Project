@@ -60,7 +60,7 @@
         </tr>
       <tr>  
          <td><h3> * Hire Date:  </h3></td>
-         <td><input type = "text" name = "hireDate"  required /> </td>
+         <td><input type = "text" name = "hiredate"  required /> </td>
         </tr>
       <tr>
          <td> </td>
@@ -79,19 +79,6 @@
         </table>
       </form>
       </div>      
- <%--     <p> <label> * Employee ID: </label>
-         <input type="text" name="emp_id"  required/> </p>
-     <p> <label> * Location: </label>
-         <input type="text" name="location" required/> </p>
-     <p> <label> * First Name:</label>
-         <input type = "text" name = "firstName"  required /> </p>
-     <p> <label> * Last Name: </label>
-         <input type = "text" name = "lastName"   required /> </p>
-     <p> <label> * Rate: </label>
-         <input type = "text" name = "rate"   required />  </p>
-      <p><label> * Hire Date: </label>
-         <input type = "text" name = "city"  required />  </p>
-   
 
       <p> <input type = "submit" name = "Submit" value = "Submit">
           <input type = "reset" value = "Reset"></p>

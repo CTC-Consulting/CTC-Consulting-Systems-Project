@@ -91,7 +91,7 @@ public class Invoice {
          setTotal(rs.getString("total"));
          setBalance(rs.getString("balance"));
          setStatus(rs.getString("status"));
-         setTimeOut(rs.getString("TimeOut"));
+
          
         }
                 }
@@ -154,9 +154,7 @@ public class Invoice {
          setRate(rs.getString("rate"));
          setLabor_Total(rs.getString("labor_Total"));
          setLine_Total(rs.getString("line_Total"));
-
-         
-        }
+          }
                 }
             
         catch (SQLException ex) {

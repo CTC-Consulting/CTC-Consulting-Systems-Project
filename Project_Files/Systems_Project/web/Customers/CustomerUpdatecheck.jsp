@@ -34,24 +34,41 @@
             <br />
             <br />
                
-      <% if( (CustomerSearch.getFirstName1() == null)
-           &&(CustomerSearch.getLastName1() == null)&& (CustomerSearch.getStreet1() == null)
-           &&(CustomerSearch.getCity1() == null) &&(CustomerSearch.getZip1() == null)
-           &&(CustomerSearch.getState1() == null)&&(CustomerSearch.getDayPhone1() == null) )
+      <% if( (CustomerSearch.getFirstName() == null)
+           &&(CustomerSearch.getLastName() == null)&& (CustomerSearch.getStreet() == null)
+           &&(CustomerSearch.getCity() == null) &&(CustomerSearch.getZip() == null)
+           &&(CustomerSearch.getState() == null)&&(CustomerSearch.getDayPhone() == null) )
                    { %>
           <%out.print(" The * fields are Required. "+
                   " Please click your browser's 'BACK' button and try again!"); %>
           
           <% } else { %>
           
-          <% CustomerUpdate.doUpdate(); %>
+          <% 
+           CustomerUpdate.cus_id = CustomerSearch.getCus_id();
+           CustomerUpdate.doUpdate(); %>
           
-          <%  out.print(CustomerSearch.getFirstName1() + " " +
-                CustomerSearch.getLastName1() + " " +
-                " is now updated in the Motor City customer database!");
-         %>
-             
-         <% } %>
+          <%  out.print(CustomerSearch.getFirstName() + " " +
+                CustomerSearch.getLastName() + " " +
+                " is now updated in the Motor City customer database!");  %>
+          
+           <% CustomerSearch.checkVin();%>
+           <br />  <br />   <br />   <br /> 
+         <form method = "get" action = "../Vehicle/VehicleSearchCheck.jsp">
+         <p><label>Please select one of the following vehicle number for the above customer:</label>
+             <input type="checkbox" name ="vin1" value="<%=CustomerSearch.getVin() %>">
+              <%=CustomerSearch.getVin() %> 
+              </br>
+             <form method = "get" action = "../Vehicle/VehicleSearchCheck.jsp">
+          <p> <label> OR please enter the vehicle number to create a new work order: </label>
+              <input type = "text" name = "vin1">  
+              <input type = "submit" name = "submit" value = "Submit">
+              <input type = "reset" value = "Reset"></p>
+          
+          <br /> <br />
+          </form>
+        
+       <% } %>
                  
     </div>  
         <div id="footer">

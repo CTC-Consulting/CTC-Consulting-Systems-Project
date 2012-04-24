@@ -15,6 +15,10 @@
 <jsp:useBean id = "CustomerSearch" class = "Customers.CustomerSearch"
 scope = "session" ></jsp:useBean>
 <jsp:setProperty name="CustomerSearch" property="*" />
+<%@page import = "Customers.NewCustomers" %>
+<jsp:useBean id = "NewCustomers" class = "Customers.NewCustomers"
+scope = "session" ></jsp:useBean>
+<jsp:setProperty name="NewCustomers" property="*" />
 
 <html>
     <head>
@@ -23,6 +27,7 @@ scope = "session" ></jsp:useBean>
         <title>Motor City Repairs - Add New Vehicle </title>
     </head>
     <body>
+        
     <div id="main">
     <div id="header1">
           <br />
@@ -35,17 +40,12 @@ scope = "session" ></jsp:useBean>
       </div>
       <div id="indexRightColumn1">  
       <form method = "get" action = "VehicleCheck.jsp">
+      <% NewVehicle.cus_id = NewCustomers.cus_id; %>
         <br />
          <br />
           <br />
  	<table border="0" cellspacing="2" cellpadding="2">
         <tbody>
-        <tr>
-            <td><h3> * Customer ID:</h3> </td>
-            <td colspan="2">
-            <input name="cus_id"  value="<%= CustomerSearch.getCus_id()%>" readonly> </td>
-            <td></td>
-           </tr>
          <tr>
             <td> <h3> * Vehicle ID Number </h3>  </td>
             <td colspan="2"><input type =" text" name ="vin" required /> </td>
@@ -61,11 +61,11 @@ scope = "session" ></jsp:useBean>
             <td><h3> * Make </h3></td>
             <td><input type =" text" name ="make" required /></td>
             <td><h3> * Model </h3> </td>
-            <td><input type =" text" name ="model " required /> </td>
+            <td><input type =" text" name ="model" required /> </td>
            </tr>
          <tr>
             <td><h3> * Exterior </h3></td>
-            <td><input type =" text" name =" exterior" required /></td>
+            <td><input type =" text" name ="exterior" required /></td>
             <td><h3> * Interior </h3> </td>
             <td><input type =" text" name ="interior" required /></td>
            </tr>
@@ -83,26 +83,7 @@ scope = "session" ></jsp:useBean>
           </tr>
         </tbody>
       </table>   
-        <%--    <h3>Please enter the following vehicle information: </h3>
-     <p> <label> * Customer ID: </label>
-         <input name="cus_id"  value="<%= CustomerSearch.getCus_id()%>" readonly> </p>
-     <p> <label> * Vehicle number:</label>
-         <input type = "text" name = "vin" required > </p>
-     <p> <label> * Make: </label>
-         <input type = "text" name = "make" required > </p>
-     <p> <label> * Model: </label>
-         <input type = "text" name = "model" required >  </p>
-      <p><label> * Year: </label>
-         <input type = "text" name = "myear"  required >  </p>
-      <p><label> * Exterior: </label>
-         <input type = "text" name = "exterior" required > </p>
-      <p><label> * Interior: </label>
-         <input type = "text" name = "interior"  required > </p>
-
-      <p> <input type = "submit" name = "Submit" value = "Submit">
-          <input type = "reset" value = "Reset"></p>
-         
-       <p> * required fields </p> --%>
+     
      </form>
      </div>  
       <div id="footer">

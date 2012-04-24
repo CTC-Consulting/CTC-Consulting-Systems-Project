@@ -25,7 +25,12 @@
    
         <form method = "get" action="WorkOrderCheck.jsp" >
       <p> <%= new java.util.Date() %> </p>
-      
+      <% CustomerSearch.cus_id = NewVehicle.getCus_id(); 
+         WorkOrder.cus_id = CustomerSearch.getCus_id();
+         CustomerSearch.getInfo();
+         CustomerSearch.checkVin();
+         WorkOrder.vin = CustomerSearch.getVin();
+        %>
       <p><label>Please enter your employee ID:</label>
           <input type="text" name="emp_id" requried> </p>
       

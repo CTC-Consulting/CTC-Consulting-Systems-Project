@@ -8,10 +8,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <%@page import = "EmployeeLogin.Employee" %>
+<%@page import = "EmployeeLogin.Login" %>
+<jsp:useBean id = "Login" 
+      class = "EmployeeLogin.Login" scope = "session"></jsp:useBean>
+<jsp:setProperty name = "Login" property = "*" />
 
-<jsp:useBean id = "employeeId" 
+<jsp:useBean id = "employee" 
       class = "EmployeeLogin.Employee" scope = "session"></jsp:useBean>
-<jsp:setProperty name = "employeeId" property = "*" />
+<jsp:setProperty name = "employee" property = "*" />
 <html>
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,23 +32,20 @@
            <br />
            <br />
            <br />
-     <%--  <%  if (employeeId.getFirstName()== null ||
-               employeeId.getLastName() == null ||
-               employeeId.getLocation() == null ||
-               employeeId.getRate() == null  ||
-               employeeId.getEmp_id()== null ||
-               employeeId.getHiredate()== null) { %>
-        <%    out.print(" * fields are required !"); %>
-        <% } else { %> --%>
-        
-       <% employeeId.doCreate();%>
+    
+       <% employee.doCreate();%>
        <% 
-        out.print(employeeId.getFirstName() + " " +
-                employeeId.getLastName() + " " +
+        out.print(employee.getFirstName() + " " +
+                employee.getLastName() + " " +
                 " is now registered in the Motor City Employees' database!");
          %>
-       
-      <%--<% } %> --%>
+         
+         <br />  <br />  <br />  <br /> 
+         <form method="post" action="logincheck.jsp">
+                  <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
+                  <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
+                  <input class="userButtom" type="submit" value="Back to admin control panel"> 
+                  </form> 
                
     </div>  
          <div id="footer">
