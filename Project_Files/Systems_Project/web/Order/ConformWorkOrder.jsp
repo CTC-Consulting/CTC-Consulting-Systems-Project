@@ -47,17 +47,21 @@
              String serviceDetailString = "serviceDetail" + i;
              String serviceQtyString = "serviceQty" + i;
              
+             double lineTotalA = Double.parseDouble(request.getParameter(serviceChargeString));
+             double lineTotalB = Double.parseDouble(request.getParameter(serviceQtyString));
+             double lineTotalF = lineTotalA * lineTotalB;
+             
              try {
         dbInitializer.executeUpdate("insert into lineitem (date, "
                 + "invoiceNum, Service_Id, description, "
-                + "parts_Total, emp_id, hrs_qty, rate) values ('" + 
+                + "rate, emp_id, hrs_qty, line_total) values ('" + 
                 WorkOrder.now() + "', '" + WorkOrder.autoIncKeyFromFunc + "', '"
                 + (request.getParameter(serviceIdString))
-                + "', '" + (request.getParameter(serviceDetailString))
+                + "', '" + (request.getParameter(serviceNameString))
                 + "', '" + (request.getParameter(serviceChargeString))
                 + "', '" + WorkOrder.getEmp_id()
                 + "', '" + (request.getParameter(serviceQtyString))
-                + "', '" + WorkOrder.getRate() + "');");
+                + "', '" + lineTotalF + "');");
             
         }
         catch (SQLException ex) {
