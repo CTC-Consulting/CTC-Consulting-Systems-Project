@@ -53,6 +53,9 @@
                 + "workorder.invoicenum where lineitem.invoiceNum = " 
                 +  Invoice.getInvoiceNum()  +  ";" ); 
         
+        
+        
+        
         if (!(rs.next())) {
            out.print("The Invoice Number you entered does not exist. Please click your browser's 'BACK' button and retry."); 
                        }
@@ -61,6 +64,8 @@
         rs.beforeFirst();          
         if (rs.next()) {           
           %> 
+          
+          
           
         
           
@@ -128,11 +133,11 @@
        <%--Grand Total:--%>
        
        <% gTotal += Double.valueOf(rs.getString("line_Total")); %> 
-            <% cBalance = Double.valueOf( Invoice.getBalance()); %>  
+        <%--    <% cBalance = Double.valueOf( Invoice.getBalance()); %>  --%>
     <%   } %> 
         <tr> <td colspan = "4">Invoice Total:</td> <td>  <%out.print(df.format(gTotal));%>  </td></tr>
         <tr> <td colspan = "5"> </td></tr>
-        <tr> <td colspan = "4">Current Balance:</td> <td>  <%out.print(df.format(cBalance));%>  </td></tr>       
+      <%--  <tr> <td colspan = "4">Current Balance:</td> <td>  <%out.print(df.format(cBalance));%>  </td></tr>     --%>  
    </table>    
                                             <br />
                                             <br />
