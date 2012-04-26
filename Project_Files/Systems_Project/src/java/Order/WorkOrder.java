@@ -22,7 +22,7 @@ import Customers.NewCustomers;
 
 
 public class WorkOrder {
-    
+    public double lineTotalE;
     public String location;
     private String address;
     private String phone;
@@ -94,15 +94,13 @@ public class WorkOrder {
             
             int [] sid = new int [11];
             for(int i = 0; i < sid.length; i++){
-                sid[i] = service_id;
-                 setServiceName(rs.getString("serviceName")); 
-                 setCharge(rs.getDouble("charge")); 
-                 setDetail(rs.getString("detail")); 
+            sid[i] = service_id;
+            setServiceName(rs.getString("serviceName")); 
+            setCharge(rs.getDouble("charge")); 
+            setDetail(rs.getString("detail")); 
             }
             
             total +=rs.getDouble("charge");
-            
-        
       }
       
       }
@@ -158,29 +156,6 @@ public class WorkOrder {
                     ex.printStackTrace();
                 } 
        }
-    
-  /*  public void doCreateLineItem() throws SQLException, ClassNotFoundException {
-        Statement dbInitializer = Login.dbInitializer();
-        try {
-         parts_Total = (parts_qty * parts_Price);  
-         labor_Total = (hrs_qty * rate);
-         line_Total = (parts_Total + labor_Total)
-         dbInitializer.executeUpdate("insert into lineItem(date, invoiceNum,,service_Id, description, part, part_qty, "
-                 + "part_Price,parts_Total, emp_id, hrs_qty, rate, labor_Total, line_Total) values ('" + now() + "', '" 
-                 + getInvoiceNum() + "','" + service_id + "','" + description + "','" + part + "','" + parts_qty +"','"
-                 + parts_Price + "','" + part_Total + "','"  + getEmp_id() + "', '" + hrs_qty + "', '" + rate + "', '" 
-                 + labor_Total + "', '" + line_Total +  "');");
-         
-         
-            
-        }
-        catch (SQLException ex) {
-                    ex.printStackTrace();
-                } 
-       }
-       * 
-       */
-    
     /**
      * @return the cus_id
      */
@@ -430,6 +405,20 @@ public class WorkOrder {
      */
     public void setInvoiceNum(int InvoiceNum) {
         this.InvoiceNum = InvoiceNum;
+    }
+
+    /**
+     * @return the lineTotalE
+     */
+    public double getLineTotalE() {
+        return lineTotalE;
+    }
+
+    /**
+     * @param lineTotalE the lineTotalE to set
+     */
+    public void setLineTotalE(double lineTotalE) {
+        this.lineTotalE = lineTotalE;
     }
 
     

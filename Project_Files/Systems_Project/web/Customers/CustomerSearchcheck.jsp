@@ -37,17 +37,26 @@ scope = "session" ></jsp:useBean>
            <br>
            <br>
         
-        <% CustomerSearch.cus_id = NewVehicle.getCus_id(); %>
         <% if (CustomerSearch.checkInfo() == false) { %>
         
-        <% out.print(" " + CustomerSearch.getLastName() + " " + CustomerSearch.getFirstName() + " is not in our database, please try again!"); %>
+        <% out.print(" " + CustomerSearch.getLastName1() + " " + CustomerSearch.getFirstName1() + " is not in our database, please try again!"); %>
         <br><br><br>
+        
+         <form method="post" action="../Customers/CustomerSearch.jsp">
+         <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
+         <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
+         <input class="userButtom" type="submit" value="Search Again"> 
+         </form> 
+         <br/> <br/> <br/>
          <form method="post" action="../Customers/Customers.jsp">
          <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
          <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
          <input class="userButtom" type="submit" value="Create a new customer"> 
          </form> 
+         
+        
         <% } else {%>   
+        <% CustomerSearch.cus_id = NewVehicle.getCus_id(); %>
         <% CustomerSearch.getInfo(); %>
          
         <form method = "get" action = "CustomerUpdatecheck.jsp">

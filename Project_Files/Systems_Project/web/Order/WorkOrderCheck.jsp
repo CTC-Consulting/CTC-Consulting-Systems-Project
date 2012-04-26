@@ -47,8 +47,9 @@
         <p>   <% WorkOrder.checkLocation();
                 out.print("Service loction: " + " " + WorkOrder.getAddress() + " , " + WorkOrder.getLocation() + " " + WorkOrder.getPhone()); %> </p>
         
-           
-             <P>  <table border="1" cellspacing="10" bgcolor="#FFFFFF" WIDTH=75% align ="center" >
+             <% out.print("Please enter the labor charge and quantity below: "); %>
+             
+       <P>  <table border="1" cellspacing="10" bgcolor="#FFFFFF" WIDTH=75% align ="center" >
             <td> 
             <tr><th><b>Service ID </b> </th>
              <th><b>Service Name</b></th>
@@ -100,11 +101,6 @@
                    value ="<% out.print(WorkOrder.getDetail()); %>"/></td><td>
                 <input type = "text" name = "<% out.print(serviceQtyString); %>"   
                    value ="1"/></td><tr>
-        <%--            out.println(
-                   "<tr><td>" + "" + WorkOrder.service_id +"</td><td>"  + 
-                        "" + WorkOrder.getServiceName() + "</td><td>" +
-                        "" + WorkOrder.getCharge() +"</td><td>"
-                        + "" + WorkOrder.getDetail()  +"</td><tr>");  --%>
              <%    }       }  %>
              
                     
@@ -139,11 +135,6 @@
                    value ="<% out.print(parts.getString("description")); %>"/></td><td>
                 <input type = "text" name = "<% out.print(serviceQtyString); %>"   
                    value ="1"/></td><tr>       
-        <%--            out.println(
-                   "<tr><td>" + "" + parts.getString("partNum") +"</td><td>"  + 
-                        "" + parts.getString("part") + "</td><td>" +
-                        "" + parts.getString("price") +"</td><td>"
-                        + "" + parts.getString("description")  +"</td><tr>" ); --%>
                 <%            }
                     } 
                   
@@ -151,26 +142,18 @@
                 catch (SQLException ex) {
                     ex.printStackTrace();
                 }}  }%>
-                    
-         <input type = "hidden" name = "total"   
-                   value ="<% out.print(total); %>"/></td><tr>        
-         <p><input type = "submit" value = "Submit" />
+                    </td></tr>   </table> 
+                    <p align="center"> <input type = "hidden" name = "total"   
+                   value ="<% out.print(total); %>"/>       
+         <input type = "submit" value = "Submit" />
                 <input type = "reset" value = "Reset" />
             </p>               
             </form>
      
-        </table> 
-    </p>
-    
-    <p align="center"><% out.print("Total " + WorkOrder.total); %>       
+       
+    </p>    
     <% }%>
     
-    
-    <form method="get" action ="ConformWorkOrder.jsp">
-    <input type="button" value="Print this page" onClick="window.print()">
-    <input type ="submit" value ="Confirm Order" name="submit" >
-    </form>  
-
    </body>
     
 </html>

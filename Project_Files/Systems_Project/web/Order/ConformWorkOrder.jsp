@@ -19,6 +19,10 @@
 
 <%@page import= "java.sql.* " %>
 <%@page import = "EmployeeLogin.Login" %>
+<jsp:useBean id = "Login" class = "EmployeeLogin.Login"
+scope = "session" ></jsp:useBean>
+<jsp:setProperty name = "Login" property = "*"/>
+
 
 <html>
     <head>
@@ -30,14 +34,9 @@
         <% 
         WorkOrder.cus_id = CustomerSearch.getCus_id();
         WorkOrder.doCreateWorkOrder();%>
-        
-        <% out.print( " " + CustomerSearch.getLastName() + ". " + CustomerSearch.getFirstName() + ", thank you for  choosing Motor City Repair. " + "<br/>"
-                + "Your service number is: " + WorkOrder.autoIncKeyFromFunc + "<br/>"
-                +"Your total is: " + WorkOrder.total + "<br/>"
-                + "Please bring this ticket to see our casher! "); %>  
-                <br/> <br/><br/>
-    
-         <% String totalString = (request.getParameter("total"));
+               
+         <%  double lineTotalE = 0;
+         String totalString = (request.getParameter("total"));
          int total = Integer.parseInt(totalString); 
          Statement dbInitializer = Login.dbInitializer();
          for (int i=1; i <= total; i++) {
@@ -50,6 +49,7 @@
              double lineTotalA = Double.parseDouble(request.getParameter(serviceChargeString));
              double lineTotalB = Double.parseDouble(request.getParameter(serviceQtyString));
              double lineTotalF = lineTotalA * lineTotalB;
+             lineTotalE += lineTotalF ;
              
              try {
         dbInitializer.executeUpdate("insert into lineitem (date, "
@@ -72,6 +72,25 @@
          
          
          %>
+         
+           <% out.print( " " + CustomerSearch.getLastName() + ". " + CustomerSearch.getFirstName() + ", thank you for  choosing Motor City Repair. " + "<br/>"
+                + "Your service number is: " + WorkOrder.autoIncKeyFromFunc + "<br/>"
+                +"Your total is: " + lineTotalE + "<br/>"
+                + "Please bring this ticket to see our casher! "); %>  
+                
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <form method="post" action="../Invoices/InvoiceSearch.jsp">
+                <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
+                <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
+                <input class="userButtom" type="submit" value="Search Invoice"> 
+                </form> 
+                
+                 <br/>
+                <br/>
+                
     <input type="button" value="Print this page" onClick="window.print()">
    
     <br />
@@ -80,11 +99,6 @@
     
                 
                 
-                
-                <% out.print( "For testing only: "
-                       + " <br/>" +
-                        "Location:  " +  WorkOrder.getLocation() + "     TimeIn: " + WorkOrder.now() + "     EMP_ID:  " + WorkOrder.getEmp_id() + "    TOTAL:  "
-                + WorkOrder.total + "    VIN_ID:  " + CustomerSearch.getVin() + "     CUSTOMER_ID:  " + CustomerSearch.getCus_id() + "     INVOICE NUMBER:  " + WorkOrder.autoIncKeyFromFunc); %>
-                
+               
     </body>
 </html>

@@ -52,7 +52,7 @@ scope = "session" ></jsp:useBean>
           </form>
           </div>
           <% } else { %>
-                <% if (Login.checkAccess() == false) { %>
+                 <% if (Login.checkAccess() == false) { %>
                 <div id="indexRightColumn1">    
                  <p style="text-align:center; font-weight:bold; font-size:20px; color:black;">
                      Welcome to Motor City Auto Repair!</p>
@@ -70,7 +70,7 @@ scope = "session" ></jsp:useBean>
                 <form method="post" action="../Customers/CustomerSearch.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
-                <input class="userButtom" type="submit" value="Search or update customer"> 
+                <input class="userButtom" type="submit" value="Place An Order"> 
                 </form> 
                 
                 <br>
@@ -110,7 +110,7 @@ scope = "session" ></jsp:useBean>
                 <form method="post" action="../Customers/CustomerSearch.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
-                <input class="userButtom" type="submit" value="Search or update customer"> 
+                <input class="userButtom" type="submit" value="Place An Order"> 
                 </form> 
                 
                 <br>
