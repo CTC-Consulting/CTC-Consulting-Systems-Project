@@ -64,12 +64,12 @@ public class UpdateInvoice {
         //Set status to closed if balance = 0
         if (Double.valueOf(balance) == 0.00) {
             status = "Closed";
-            //setStatus(status);
+            
         }
         
         //Timestamp payment date/time and set  Payment_Type
         Payment_Date = String.valueOf(new Timestamp(date.getTime()));
-       // setPayment_Date(Payment_Date);
+      
         
        
         
@@ -86,7 +86,7 @@ public class UpdateInvoice {
                    }
                   }
 
-        
+        //Update balance and status subsequent to payment
         public void updateWorkOrder() throws SQLException, ClassNotFoundException{
             
         try {    
@@ -99,7 +99,7 @@ public class UpdateInvoice {
             }
         }  
 
-                                
+       //getters and setters                         
                         
     public String getBalance() {
         return balance;
