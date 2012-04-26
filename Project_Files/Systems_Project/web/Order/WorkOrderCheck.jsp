@@ -75,9 +75,10 @@
                 <input type = "text" name = "<% out.print(serviceDetailString); %>"   
                    value ="Hourly Labor Charge"/></td><td>
                 <input type = "text" name = "<% out.print(serviceQtyString); %>"   
-                   value ="1"/></td><<tr>
+                   value ="1"/></td><tr>
              <%
                String[] array = request.getParameterValues("service_id");
+               if (array != null) {
                for( int i = 0; i < array.length; i++) {
                total = total + 1;
                WorkOrder.service_id = Integer.parseInt(array[i]);                
@@ -104,11 +105,12 @@
                         "" + WorkOrder.getServiceName() + "</td><td>" +
                         "" + WorkOrder.getCharge() +"</td><td>"
                         + "" + WorkOrder.getDetail()  +"</td><tr>");  --%>
-             <%           }  %>
+             <%    }       }  %>
              
                     
              <% String[] partsArray = request.getParameterValues("part_id");
              Statement dbInitializer = Login.dbInitializer();
+             if (partsArray != null) {
              for( int i = 0; i < partsArray.length; i++) {
                total = total + 1;
                serviceIdString = "serviceId" + total;
@@ -148,7 +150,7 @@
                 //  Catch exception for error
                 catch (SQLException ex) {
                     ex.printStackTrace();
-                }  }%>
+                }}  }%>
                     
          <input type = "hidden" name = "total"   
                    value ="<% out.print(total); %>"/></td><tr>        
@@ -167,7 +169,7 @@
     <form method="get" action ="ConformWorkOrder.jsp">
     <input type="button" value="Print this page" onClick="window.print()">
     <input type ="submit" value ="Confirm Order" name="submit" >
-    </form>  --%>
+    </form>  
 
    </body>
     
