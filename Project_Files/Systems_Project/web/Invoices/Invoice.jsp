@@ -74,12 +74,10 @@
         <h3><%= Invoice.getLocation()%></h3>
         
         <%--  Garage Address    --%>
-    <pre>  
-    <% Invoice.storeLocation();%>    
-    <%= Invoice.getAddress()%>  
-    Big City, GA 30097  
-    <%= Invoice.getPhone()%> 
-    </pre>
+    
+    <% Invoice.storeLocation();%>  
+    <% out.print("" +Invoice.getAddress() +"<br/>BigCity, MI 30099 <br/>"  + Invoice.getPhone()  ) ; %> 
+    
 <h5>It is not fixed until it's fixed </h5>                  
 
 <h1 style = "text-align: center; color: gray"> Invoice </h1>

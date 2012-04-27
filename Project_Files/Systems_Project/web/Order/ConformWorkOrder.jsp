@@ -82,16 +82,23 @@ scope = "session" ></jsp:useBean>
                 <br/>
                 <br/>
                 <br/>
+                
+                <input type="button" value="Print this page" onClick="window.print()">
+                <br/>
+                <br/>
                 <form method="post" action="../Invoices/InvoiceSearch.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
                 <input class="userButtom" type="submit" value="Search Invoice"> 
                 </form> 
                 
-                 <br/>
-                <br/>
+                <form method="post" action="../Customers/CustomerSearch.jsp">
+                <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
+                <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
+                <input class="userButtom" type="submit" value="Place another Order"> 
+                </form> 
                 
-    <input type="button" value="Print this page" onClick="window.print()">
+               
    
     <br />
     <br />
