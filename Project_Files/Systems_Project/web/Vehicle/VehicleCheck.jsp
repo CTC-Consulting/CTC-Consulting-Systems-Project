@@ -32,6 +32,7 @@ scope = "session" ></jsp:useBean>
            <br>
            <br>
            <br> 
+           <%--create a new vehicle record for the customer --%>
        <% NewVehicle.cus_id = NewCustomers.getCus_id(); %>
        <% NewVehicle.doCreate(); %>
        <% out.print("The vehicle number "+ NewCustomers.getVin() +
@@ -39,6 +40,7 @@ scope = "session" ></jsp:useBean>
         %>
       
         <br/>  <br/>  <br/>  <br/>
+        <%--button for start the work order --%>
        <form method="post" action="../Order/WorkOrder.jsp">
        <input class="userButtom" type="submit" value="Start the work order"> 
         </form> 

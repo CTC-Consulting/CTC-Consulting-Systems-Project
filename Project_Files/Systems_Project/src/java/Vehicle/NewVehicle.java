@@ -32,7 +32,7 @@ public class NewVehicle {
     
     }
     
-    
+    //check user name and password
     public boolean checkValid() throws SQLException, ClassNotFoundException {
         boolean test = false;        
         Statement dbInitializer = Login.dbInitializer();
@@ -43,7 +43,7 @@ public class NewVehicle {
         }
         return test;
     }
-    
+    //check vehicle information
      public boolean checkInfo() throws SQLException, ClassNotFoundException {
         boolean test = false;        
         Statement dbInitializer = Login.dbInitializer();
@@ -54,7 +54,7 @@ public class NewVehicle {
         }
         return test;
     }
-    
+    //create a new vehicle record
     public void doCreate() throws SQLException, ClassNotFoundException {
       
         Statement stmt = Login.dbInitializer();
@@ -64,7 +64,7 @@ public class NewVehicle {
         
     }
     
-    
+    //get the vehicle information
      public void getInfo() throws SQLException, ClassNotFoundException {
         Statement statement = Login.dbInitializer();
         ResultSet rs = statement.executeQuery("select * from Vehicle where vin = '" 

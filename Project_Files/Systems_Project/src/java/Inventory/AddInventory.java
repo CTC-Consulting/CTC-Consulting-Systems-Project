@@ -25,7 +25,7 @@ public class AddInventory {
         
     }
 
-    
+    //create a new record for parts
     public void doCreate() throws SQLException, ClassNotFoundException {
         Statement dbInitializer = Login.dbInitializer();
         try {

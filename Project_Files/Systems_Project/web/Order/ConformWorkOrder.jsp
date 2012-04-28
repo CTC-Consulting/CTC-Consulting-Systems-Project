@@ -30,11 +30,11 @@ scope = "session" ></jsp:useBean>
         <title>Order Conform</title>
     </head>
     <body class="center">
-        
-        <% 
-        WorkOrder.cus_id = CustomerSearch.getCus_id();
+    <%--create a new work order record --%>
+    <%  WorkOrder.cus_id = CustomerSearch.getCus_id();
         WorkOrder.doCreateWorkOrder();%>
-               
+        
+        <%--connect with the datebase, try to create a new line item table --%>       
          <%  double lineTotalE = 0;
          String totalString = (request.getParameter("total"));
          int total = Integer.parseInt(totalString); 
@@ -72,7 +72,7 @@ scope = "session" ></jsp:useBean>
          
          
          %>
-         
+          <%--print our the confirmmation --%>
            <% out.print( " " + CustomerSearch.getLastName() + ". " + CustomerSearch.getFirstName() + ", thank you for  choosing Motor City Repair. " + "<br/>"
                 + "Your service number is: " + WorkOrder.autoIncKeyFromFunc + "<br/>"
                 +"Your total is: " + lineTotalE + "<br/>"
@@ -86,12 +86,13 @@ scope = "session" ></jsp:useBean>
                 <input type="button" value="Print this page" onClick="window.print()">
                 <br/>
                 <br/>
+                <%--button for search invoice --%>
                 <form method="post" action="../Invoices/InvoiceSearch.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
                 <input class="userButtom" type="submit" value="Search Invoice"> 
                 </form> 
-                
+                <%--button for place another order --%>
                 <form method="post" action="../Customers/CustomerSearch.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >

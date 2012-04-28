@@ -25,7 +25,7 @@ public class EditInventory {
     
     public EditInventory() {
     }
-    
+    //update part information
      public void doEdit() throws SQLException, ClassNotFoundException {
         Statement dbInitializer = Login.dbInitializer();
         try {
@@ -41,7 +41,7 @@ public class EditInventory {
                     ex.printStackTrace();
                 } 
        }
-     
+     //update part quantity
      public void doAddQuantity() throws SQLException, ClassNotFoundException {
         Statement dbInitializer = Login.dbInitializer();
         try {

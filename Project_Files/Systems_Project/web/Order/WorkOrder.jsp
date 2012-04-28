@@ -35,16 +35,21 @@
     </head>
     <body>
      <form method = "get" action="WorkOrderCheck.jsp" >
-         <%= new java.util.Date() %> 
+      <%--print out the current time and date --%>
+      <%= new java.util.Date() %> 
+      
+      <%--get the customer and vehicle information for the order --%>
       <% CustomerSearch.cus_id = NewVehicle.getCus_id(); 
          WorkOrder.cus_id = CustomerSearch.getCus_id();
          CustomerSearch.getInfo();
          CustomerSearch.checkVin();
-         WorkOrder.vin = CustomerSearch.getVin();
-        %>
+         WorkOrder.vin = CustomerSearch.getVin();  %>
+         
+      <%--get employee id --%>
       <p><label>* Please enter your employee ID:</label>
           <input type="text" name="emp_id" requried> </p>
       
+      <%--get sevice location information --%>
       <p> <label> * Location:</label>
          <SELECT name ="id" requried> 
            <NAME="drop" SIZE=1 >
@@ -54,7 +59,8 @@
                <OPTION value="3"> Motor City Repair South </option>
                <OPTION value="4"> Fifth Street Garage </option>
          </SELECT>  </p>
-     
+      
+      <%--check box for the service needed --%>
       <p> <label> * Service name:(select all that apply) </label> </br>
       <input type="checkbox" name ="service_id" value="1"> Oil & Filter Change </br>
       <input type="checkbox" name ="service_id" value="2"> mini-service </br>
@@ -69,6 +75,7 @@
       <input type="checkbox" name ="service_id" value="11"> Major Services 6 cyl </br>
      </p>
      </br>
+     <%--check box for the part needed --%>
      <label> * Parts used:(select all that apply) </label> </br>
      <table>
             <tr>
@@ -81,7 +88,7 @@
                 <th>Quantity</th>
             </tr>
             
-             
+            <%--get part selection from the part table--%>
             <%  Statement dbInitializer = Login.dbInitializer();
                 
                 // Search for parts list

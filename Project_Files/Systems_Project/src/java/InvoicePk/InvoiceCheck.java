@@ -10,6 +10,7 @@ package InvoicePk;
  */
 public class InvoiceCheck {
     
+    //check invoice number
     private boolean intChk;
             
         public boolean intCheck(String x){

@@ -31,6 +31,7 @@
      <h4 style = "color: red"> * Required fields !  </h4>
    </div>
    <div id="indexRightColumn1">  
+       <%--get the new customer information --%>
     <form method = "get" action = "Customerscheck.jsp">
         <% NewCustomers.cus_id = NewCustomers.autoIncKeyFromFunc; %>
      <br />

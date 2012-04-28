@@ -33,7 +33,7 @@
             <br />
             <br />
             <br />
-               
+      <%--check the null values --%>        
       <% if( (CustomerSearch.getFirstName() == null)
            &&(CustomerSearch.getLastName() == null)&& (CustomerSearch.getStreet() == null)
            &&(CustomerSearch.getCity() == null) &&(CustomerSearch.getZip() == null)
@@ -43,7 +43,7 @@
                   " Please click your browser's 'BACK' button and try again!"); %>
           
           <% } else { %>
-          
+          <%--update the customer information --%>
           <% 
            CustomerUpdate.cus_id = CustomerSearch.getCus_id();
            CustomerUpdate.doUpdate(); %>
@@ -51,7 +51,7 @@
           <%  out.print(CustomerSearch.getFirstName() + " " +
                 CustomerSearch.getLastName() + " " +
                 " is now updated in the Motor City customer database!");  %>
-          
+          <%--get the vin information --%>
            <% CustomerSearch.checkVin();%>
            <br />  <br />   <br />   <br /> 
          <form method = "get" action = "../Vehicle/VehicleSearchCheck.jsp">

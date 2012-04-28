@@ -19,7 +19,7 @@ public class DeleteInventory {
     public DeleteInventory() {
         
     }
-    
+    //delete a record for a part
     public void doDelete() throws SQLException, ClassNotFoundException {
         Statement dbInitializer = Login.dbInitializer();
         try {

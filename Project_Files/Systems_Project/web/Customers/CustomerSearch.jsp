@@ -35,6 +35,7 @@ scope = "session" ></jsp:useBean>
         <div id="indexLeftColumn">
              <br />
              <br />
+             <%--get customer first and last name --%>
            <h3> Please enter customer's name: </h3>
              <br />
            <h4 style = "color: red">  * Required fields ! </h4>

@@ -29,27 +29,32 @@
         <title>Work Order Check</title>
     </head>
     <body >
+      <%-- check null values --%>
       <% WorkOrder.total = 0;
       if((WorkOrder.getEmp_id() == null) && (WorkOrder.getId() == 0 )&& (WorkOrder.service_id == 0)) {
          out.print("All fills are requried!"); 
                      }  else { %>
-                
+       <%--print out the current time and date --%>         
        <p> <%= new java.util.Date() %> </p>
        
-       <p>
-          <% CustomerSearch.getInfo(); 
+       <%--get customer information --%>
+       <p><% CustomerSearch.getInfo(); 
           out.print(" " + CustomerSearch.getLastName() + " , " + CustomerSearch.getFirstName() 
          + "<br /> " + CustomerSearch.getStreet() + ", " + CustomerSearch.getCity() + " , " + CustomerSearch.getState() + " " + CustomerSearch.getZip());  %>
         
+        <%--get employee information --%>
         <p>  <% WorkOrder.checkEmp(); 
            out.print("Check in employee:  " + " " + WorkOrder.getLastName() + ", " +WorkOrder.getFirstName()); %> 
-                
+        
+        <%--get location information --%>
         <p>   <% WorkOrder.checkLocation();
                 out.print("Service loction: " + " " + WorkOrder.getAddress() + " , " + WorkOrder.getLocation() + " " + WorkOrder.getPhone()); %> </p>
         
-             <% out.print("Please enter the labor charge and quantity below: "); %>
-             
-       <P>  <table border="1" cellspacing="10" bgcolor="#FFFFFF" WIDTH=75% align ="center" >
+        <%--ask user to enter the labor charge and quantity --%>
+       <p style="color:red" >     <% out.print("Please enter the labor charge and quantity below: "); %> </p>
+           
+        <%--get the selected service need for the vehicle into an editable table--%>
+       <p>  <table border="1" cellspacing="10" bgcolor="#FFFFFF" WIDTH=75% align ="center" >
             <td> 
             <tr><th><b>Service ID </b> </th>
              <th><b>Service Name</b></th>
@@ -103,7 +108,7 @@
                    value ="1"/></td><tr>
              <%    }       }  %>
              
-                    
+             <%--get the  selected parts need for the vehicle into an editable table--%>      
              <% String[] partsArray = request.getParameterValues("part_id");
              Statement dbInitializer = Login.dbInitializer();
              if (partsArray != null) {

@@ -10,6 +10,7 @@ package Inventory;
  */
 
 public class DataCheck {
+    //double check quantity
     public boolean doubleCheck(String x){
         
         int check = x.indexOf(".");
@@ -23,6 +24,7 @@ public class DataCheck {
             return false;
         }
 }
+    //check quantity
     public boolean intCheck(String x){
         try {
             Integer.parseInt(x);

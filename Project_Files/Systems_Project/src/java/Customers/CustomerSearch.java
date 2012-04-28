@@ -9,7 +9,6 @@ package Customers;
  * @author Xia
  */
 import java.sql.*;
-//import Customers.NewCustomers;
 import EmployeeLogin.Login;
 import Vehicle.NewVehicle;
 
@@ -49,7 +48,7 @@ public class CustomerSearch {
     
      public CustomerSearch() {        
       }
-     
+     //Check matching customer information
       public boolean checkInfo() throws SQLException, ClassNotFoundException {
 
          boolean test = false;
@@ -73,6 +72,7 @@ public class CustomerSearch {
 
     } // end testerUsernameandPassword
 
+      //get the customer information
     public void getInfo() throws SQLException, ClassNotFoundException {
       
        
@@ -97,7 +97,7 @@ public class CustomerSearch {
    
         
     }
-    
+    //check the customer vehicle information
      public void checkVin() throws SQLException, ClassNotFoundException {
         Statement dbInitializer = Login.dbInitializer();
         ResultSet rSet = dbInitializer.executeQuery("select * from vehicle where cus_id = '" 

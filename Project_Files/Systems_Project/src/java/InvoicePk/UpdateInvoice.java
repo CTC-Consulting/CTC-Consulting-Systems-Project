@@ -91,9 +91,9 @@ public class UpdateInvoice {
             
         try {    
         Statement dbInitializer = UpdateInvoice.dbInitializer() ;
-        dbInitializer.executeUpdate("insert into WorkOrder (balance, status) values ('" + getBalance() + "', '" +  getStatus() + "');"); 
+        dbInitializer.executeUpdate("update WorkOrder set balance = " + getBalance() + " and status = "+  getStatus() + "');");
+        }
                 
-                }
         catch (SQLException ex) {
                    ex.printStackTrace();
             }

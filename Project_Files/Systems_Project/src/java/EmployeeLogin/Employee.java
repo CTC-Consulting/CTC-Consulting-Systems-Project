@@ -28,7 +28,7 @@ public class Employee {
     
     public Employee() {
     }
-    
+    //check the login information
     public boolean checkValid() throws SQLException, ClassNotFoundException {
         boolean test = false;        
         Statement dbInitializer = Login.dbInitializer();
@@ -39,7 +39,7 @@ public class Employee {
         }
         return test;
     }
-    
+    //create a new employee record
     public void doCreate() throws SQLException, ClassNotFoundException {
         Statement dbInitializer = Login.dbInitializer();
         dbInitializer.executeUpdate("insert into Employees values ('" + getEmp_id() + "', '" + getLocation() + "', '" + getFirstName() + "', '" + getLastName() + "', '" + getRate() + "', '"

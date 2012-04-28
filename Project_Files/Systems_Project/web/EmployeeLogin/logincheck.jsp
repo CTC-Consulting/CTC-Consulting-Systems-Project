@@ -29,13 +29,13 @@ scope = "session" ></jsp:useBean>
          <br>
          <br>
          <br>
-        
+        <%--check the null value for user id and password --%>
         <% if( ( (Login.getUserId() == null)&&(Login.getPassword() == null)) )
               { %>
         <% out.print("Please click your browser's 'BACK' button "
                 + "and enter the user name and password!"); %>
         <% } else {%>
-        
+        <%--check incorrect information --%>
         <% if (Login.testUsernameAndPassword() == false) { %>
          <form id="form_1" method="post" action="logincheck.jsp">
             
@@ -52,6 +52,7 @@ scope = "session" ></jsp:useBean>
           </form>
           </div>
           <% } else { %>
+          <%-- check admin or employee --%>
                  <% if (Login.checkAccess() == false) { %>
                 <div id="indexRightColumn1">    
                  <p style="text-align:center; font-weight:bold; font-size:20px; color:black;">
@@ -59,6 +60,7 @@ scope = "session" ></jsp:useBean>
       
                 <br>
                 <br>
+                <%--button for create a new customer --%>
                 <form method="post" action="../Customers/Customers.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
@@ -67,6 +69,7 @@ scope = "session" ></jsp:useBean>
                 
                   <br>
                 <br>
+                <%--button for place an order --%>
                 <form method="post" action="../Customers/CustomerSearch.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
@@ -75,6 +78,7 @@ scope = "session" ></jsp:useBean>
                 
                 <br>
                 <br>
+                <%-- button for check inventory --%>
                 <form method="post" action="../Inventory/InventoryList.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
@@ -83,14 +87,16 @@ scope = "session" ></jsp:useBean>
                 
                 <br>
                 <br>
+                <%--button for search invoice --%>
                 <form method="post" action="../Invoices/InvoiceSearch.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
                 <input class="userButtom" type="submit" value="Search Invoice"> 
                 </form> 
                   <% } else { %>
+                  <%--admin page information --%>
                   <p style="text-align:center; font-weight:bold; font-size:20px; color:green;">Admin Control Panel</p>
-                  
+                  <%--button for create a new employee --%>
                   <form id="Employee" method="post" action="Employee.jsp">
                   <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                   <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
@@ -99,6 +105,7 @@ scope = "session" ></jsp:useBean>
                   
                     <br>
                 <br>
+                <%--button for create a new customer --%>
                 <form method="post" action="../Customers/Customers.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
@@ -107,6 +114,7 @@ scope = "session" ></jsp:useBean>
                 
                   <br/>
                 <br/>
+                <%--button for place an order--%>
                 <form method="post" action="../Customers/CustomerSearch.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
@@ -115,6 +123,7 @@ scope = "session" ></jsp:useBean>
                 
                 <br>
                 <br>
+                <%--button for check inventory --%>
                 <form method="post" action="../Inventory/InventoryList.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
@@ -123,6 +132,7 @@ scope = "session" ></jsp:useBean>
                 
                 <br>
                 <br>
+                <%--button for search invoice --%>
                 <form method="post" action="../Invoices/InvoiceSearch.jsp">
                 <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                 <input type="hidden" name="password" value="<%= Login.getPassword() %>" >

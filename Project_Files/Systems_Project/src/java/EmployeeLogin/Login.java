@@ -28,6 +28,7 @@ public class Login {
     public Login() {    
     } // end no-arg constructor
     
+    //connect to the database
     public static Statement dbInitializer()throws SQLException, ClassNotFoundException{
 	//Load the jdbc driver
 	Class.forName("com.mysql.jdbc.Driver");
@@ -39,6 +40,7 @@ public class Login {
         return statement;
     } // end dbInitializer method
 
+    //test user name and password
     public boolean testUsernameAndPassword() throws SQLException, ClassNotFoundException {
 
          boolean test = false;
@@ -62,6 +64,7 @@ public class Login {
 
     } // end testerUsernameandPassword
 
+    //check admin
     public boolean checkAccess() throws SQLException, ClassNotFoundException {
         boolean userAccess = false;
         String test = "N";

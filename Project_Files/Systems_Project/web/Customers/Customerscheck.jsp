@@ -28,7 +28,7 @@
             <br />
             <br />
             <br />
-
+       <%--create a new customer --%>
        <% NewCustomers.doCreate();
           NewCustomers.cus_id = NewCustomers.autoIncKeyFromFunc; %>
        <h3><% out.print(NewCustomers.getFirstName() + " " +

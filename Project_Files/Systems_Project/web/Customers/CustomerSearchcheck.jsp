@@ -36,18 +36,19 @@ scope = "session" ></jsp:useBean>
            <br>
            <br>
            <br>
-        
+       <%--check database for the matching customer first and last name --%>
         <% if (CustomerSearch.checkInfo() == false) { %>
         
         <% out.print(" " + CustomerSearch.getLastName1() + " " + CustomerSearch.getFirstName1() + " is not in our database, please try again!"); %>
         <br><br><br>
-        
+        <%--button for Search again --%>
          <form method="post" action="../Customers/CustomerSearch.jsp">
          <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
          <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
          <input class="userButtom" type="submit" value="Search Again"> 
          </form> 
          <br/> <br/> <br/>
+         <%-- button for create a new customer --%>
          <form method="post" action="../Customers/Customers.jsp">
          <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
          <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
@@ -57,6 +58,7 @@ scope = "session" ></jsp:useBean>
         
         <% } else {%>   
         <% CustomerSearch.cus_id = NewVehicle.getCus_id(); %>
+        <%--get customer information of match --%>
         <% CustomerSearch.getInfo(); %>
          
         <form method = "get" action = "CustomerUpdatecheck.jsp">
@@ -79,11 +81,13 @@ scope = "session" ></jsp:useBean>
          <p> <label> Cell Number: </label>
          <input type = "text" name = "moble" value ="<%=CustomerSearch.getMoble()%>">  </p>
          <p>
+         <%--update customer information --%>
          <h3>Please click the update button to update the customer information :</h3>
          <input type = "submit" name = "submit" value = "Update Now">
          <input type = "reset" value = "Reset">
          </form>
          
+         <%-- get the matching customer's vehicle information --%>
           <% CustomerSearch.checkVin(); %>
           <form method = "get" action = "../Vehicle/VehicleSearchCheck.jsp">
          <p><label>Please select one of the following vehicle number for the above customer:</label>

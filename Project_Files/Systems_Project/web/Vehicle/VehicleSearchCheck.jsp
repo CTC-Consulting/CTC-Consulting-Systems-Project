@@ -37,22 +37,24 @@ scope = "session" ></jsp:useBean>
            <br>
            <br>
            <br>
-        
+        <%--check the null value for the vehicle --%>
          <% if(NewVehicle.getVin1() == null) { %>
          <% out.print("Please click your browser's 'BACK' button"+
                  " and select or enter the vehicle number for the customer!"); %>
          <% } else {%> 
-        
+        <%--check the false information --%>
          <% if(NewVehicle.checkInfo() == false) { %>
          <% out.print("The vehicle number you have entered " + NewVehicle.getVin1() + " is not in our database, "
                 + "please go back to try again or create a new vehicle information for the customer!"); %>
         <br><br><br>
+        <%--button for create a new vehicle --%>
          <form method="post" action="Vehicle.jsp">
          <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
          <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
          <input class="userButtom" type="submit" value="Create a new vehicle"> 
          </form> 
-        <% } else {%>   
+        <% } else {%>  
+        <%--get the matching vehicle information --%>
           <% NewVehicle.getInfo();   %>
         <form name ="form1" method = "get" action="../Order/WorkOrder.jsp" >
          <h3> Customer vehicle information: </h3>

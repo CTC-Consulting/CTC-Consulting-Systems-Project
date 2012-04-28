@@ -51,7 +51,7 @@ public class Invoice {
     public Invoice() {
     }
     
-    
+    //connect with the database
         public static Statement dbInitializer()throws SQLException, ClassNotFoundException{
 	//Load the jdbc driver
 	Class.forName("com.mysql.jdbc.Driver");
@@ -63,7 +63,7 @@ public class Invoice {
         return statement;
     } // end dbInitializer method
         
-        
+        //get information from workOrder
         public void getInfo() throws SQLException, ClassNotFoundException {
       
        try {
@@ -100,7 +100,7 @@ public class Invoice {
                 }
      }  
     
-        
+        //get store information
         public void storeLocation() throws SQLException, ClassNotFoundException {
          // WorkOrder loc = new WorkOrder();
         
@@ -128,7 +128,7 @@ public class Invoice {
                 }
         
     }
-              
+       //get information from line item table       
         public void getLineInfo() throws SQLException, ClassNotFoundException {
       
        

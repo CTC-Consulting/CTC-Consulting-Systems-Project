@@ -27,6 +27,7 @@
     <div id="indexLeftColumn">
        <br />
         <br />
+        <%--get the new employee information --%>
        <h3>Please enter employee's information: </h3>
        <br />
        <h4 style = "color: red">  * Required fields ! </h4>

@@ -25,8 +25,8 @@ public class NewLocation {
     }
     
   
-    
-            public static Statement dbInitializer()throws SQLException, ClassNotFoundException{
+    //connect with the database
+      public static Statement dbInitializer()throws SQLException, ClassNotFoundException{
 	//Load the jdbc driver
 	Class.forName("com.mysql.jdbc.Driver");
 	//Establish a connection

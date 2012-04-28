@@ -32,7 +32,7 @@
            <br />
            <br />
            <br />
-    
+       <%--create the employee --%>
        <% employee.doCreate();%>
        <% 
         out.print(employee.getFirstName() + " " +
@@ -41,6 +41,7 @@
          %>
          
          <br />  <br />  <br />  <br /> 
+         <%--button for back to admin control --%>
          <form method="post" action="logincheck.jsp">
                   <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
                   <input type="hidden" name="password" value="<%= Login.getPassword() %>" >

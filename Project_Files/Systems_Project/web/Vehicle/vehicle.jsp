@@ -47,6 +47,7 @@ scope = "session" ></jsp:useBean>
  	<table border="0" cellspacing="2" cellpadding="2">
         <tbody>
          <tr>
+             <%--get a new vehicle information --%>
             <td> <h3> * Vehicle ID Number </h3>  </td>
             <td colspan="2"><input type =" text" name ="vin" required /> </td>
             <td></td>

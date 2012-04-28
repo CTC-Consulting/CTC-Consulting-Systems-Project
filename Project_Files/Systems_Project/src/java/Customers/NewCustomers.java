@@ -40,6 +40,7 @@ public class NewCustomers {
     public NewCustomers() {
     }
     
+    //check login user and password
     public boolean checkValid() throws SQLException, ClassNotFoundException {
         boolean test = false;        
         Statement dbInitializer = Login.dbInitializer();
@@ -50,7 +51,7 @@ public class NewCustomers {
         }
         return test;
     }
-    
+    //create a new customer record into the customer table
     public void doCreate() throws SQLException, ClassNotFoundException {
         ResultSet rs = null;
         try {

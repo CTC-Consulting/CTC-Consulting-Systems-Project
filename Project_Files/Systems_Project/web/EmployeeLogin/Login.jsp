@@ -29,6 +29,7 @@ scope = "session" ></jsp:useBean>
          <div id="indexLeftColumn">
              <br>
               <br>
+              <%--ask use to enter the user name and password --%>
            <h1>Please sign in: </h1>
          </div>
         

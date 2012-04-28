@@ -44,7 +44,7 @@ public class CustomerUpdate {
     }
    
     
-   
+   //update the customer information
     public void doUpdate() throws SQLException, ClassNotFoundException {
         
      Statement dbInitializer = Login.dbInitializer();

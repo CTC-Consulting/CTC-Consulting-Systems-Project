@@ -47,7 +47,7 @@ public class WorkOrder {
    
     public WorkOrder () {     
     }
-
+    //check user name and password
      public boolean checkValid() throws SQLException, ClassNotFoundException {
         boolean test = false;        
         Statement dbInitializer = Login.dbInitializer();
@@ -58,7 +58,7 @@ public class WorkOrder {
         }
         return test;
     }
-    
+    //get employee information
      public void checkEmp() throws SQLException, ClassNotFoundException {
         Statement statement = Login.dbInitializer();
         ResultSet rs = statement.executeQuery("select * from Employees where emp_id = '" 
@@ -70,7 +70,7 @@ public class WorkOrder {
          setRate(rs.getDouble("rate")); 
         }
     }
-     
+     //check location
      public void checkLocation() throws SQLException, ClassNotFoundException {
         Statement statement = Login.dbInitializer();
         ResultSet rs = statement.executeQuery("select * from Locations where id = '" 
@@ -82,7 +82,7 @@ public class WorkOrder {
          setManager(rs.getString("manager")); 
         }
     }
-     
+     //check service id
       public void checkServiceId() throws SQLException, ClassNotFoundException {
         Statement statement = Login.dbInitializer();
         ResultSet rs = statement.executeQuery("select service_id, serviceName, detail, charge from Services where service_id = '" 
@@ -104,7 +104,7 @@ public class WorkOrder {
       }
       
       }
-      
+    //create a method for the current time and date  
     private static String DATE_FORMAT_NOW = "yyyy-MM-dd HH:mm:ss";
 
     /**
@@ -127,6 +127,7 @@ public class WorkOrder {
     return sdf.format(cal.getTime());
      }
 
+    //create a new record for the workOrder
     public void doCreateWorkOrder() throws SQLException, ClassNotFoundException {
        ResultSet rs = null;
        try {
