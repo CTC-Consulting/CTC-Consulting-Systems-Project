@@ -91,7 +91,7 @@ public class UpdateInvoice {
             
         try {    
         Statement dbInitializer = UpdateInvoice.dbInitializer() ;
-        dbInitializer.executeUpdate("update WorkOrder set balance = " + getBalance() + " and status = "+  getStatus() + "');");
+        dbInitializer.executeUpdate("update WorkOrder set balance = " + getBalance() + ", status = "+  getStatus() + "');");
         }
                 
         catch (SQLException ex) {
@@ -100,6 +100,7 @@ public class UpdateInvoice {
         }  
 
        //getters and setters                         
+        
                         
     public String getBalance() {
         return balance;

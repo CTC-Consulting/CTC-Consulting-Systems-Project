@@ -48,7 +48,7 @@ scope = "session" ></jsp:useBean>
                 + "please go back to try again or create a new vehicle information for the customer!"); %>
         <br><br><br>
         <%--button for create a new vehicle --%>
-         <form method="post" action="Vehicle.jsp">
+         <form method="post" action="vehicle.jsp">
          <input type="hidden" name="userId" value="<%= Login.getUserId() %>" >
          <input type="hidden" name="password" value="<%= Login.getPassword() %>" >
          <input class="userButtom" type="submit" value="Create a new vehicle"> 
