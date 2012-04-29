@@ -41,9 +41,12 @@ scope = "session" ></jsp:useBean>
          <% if(NewVehicle.getVin1() == null) { %>
          <% out.print("Please click your browser's 'BACK' button"+
                  " and select or enter the vehicle number for the customer!"); %>
-         <% } else {%> 
+         <% } else {
+             NewVehicle.checkVinOnly();
+                         } %>
+         
         <%--check the false information --%>
-         <% if(NewVehicle.checkInfo() == false) { %>
+         <% if(NewVehicle.checkVinOnly() == false) { %>
          <% out.print("The vehicle number you have entered " + NewVehicle.getVin1() + " is not in our database, "
                 + "please go back to try again or create a new vehicle information for the customer!"); %>
         <br><br><br>
@@ -72,7 +75,6 @@ scope = "session" ></jsp:useBean>
          <input type = "text" name = "interior"  value ="<%=NewVehicle.getInterior()%>" > </p>
       <p><input type = "submit" name = "Submit" value = "Start work order"></p>
         </form>
-        <% } %>
         <% } %>
    
        

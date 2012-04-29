@@ -54,6 +54,7 @@ public class NewVehicle {
         }
         return test;
     }
+     
     //create a new vehicle record
     public void doCreate() throws SQLException, ClassNotFoundException {
       
@@ -63,14 +64,26 @@ public class NewVehicle {
         System.out.println("This is the customer Id in new vehicle: " + getCus_id());
         
     }
-    
+     //check vehicle information
+     public boolean checkVinOnly() throws SQLException, ClassNotFoundException {
+        boolean test = false;        
+        Statement dbInitializer = Login.dbInitializer();
+        ResultSet resultSet = dbInitializer.executeQuery("select * from Vehicle where vin = '" + getVin1() + 
+               "'");
+        while (resultSet.next()) {
+            test = true;
+        }
+        return test;
+    }
     //get the vehicle information
-     public void getInfo() throws SQLException, ClassNotFoundException {
+     public boolean getInfo() throws SQLException, ClassNotFoundException {
+         boolean test = false;
         Statement statement = Login.dbInitializer();
         ResultSet rs = statement.executeQuery("select * from Vehicle where vin = '" 
                 + getVin1() + "';" );
       
         while (rs.next()) {
+            test=true;
     //     setCus_id(rs.getInt("cus_id"));
          setVin(rs.getString("vin")); 
          setMake(rs.getString("make")); 
@@ -80,7 +93,7 @@ public class NewVehicle {
          setInterior(rs.getString("interior")); 
         }
    
-        
+        return test;
     }
 
     /**

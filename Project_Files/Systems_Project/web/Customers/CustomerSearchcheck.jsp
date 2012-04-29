@@ -92,7 +92,7 @@ scope = "session" ></jsp:useBean>
           <form method = "get" action = "../Vehicle/VehicleSearchCheck.jsp">
          <p><label>Please select one of the following vehicle number for the above customer:</label>
              <input type="checkbox" name ="vin1" value="<%=CustomerSearch.getVin() %>">
-              <%=CustomerSearch.getVin() %> 
+              <%=CustomerSearch.getVin()%> 
               </br>
              <form method = "get" action = "../Vehicle/VehicleSearchCheck.jsp">
           <p> <label> OR please enter the vehicle number to create a new work order: </label>
