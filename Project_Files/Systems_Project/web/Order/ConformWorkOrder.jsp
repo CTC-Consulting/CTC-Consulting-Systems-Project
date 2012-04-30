@@ -31,11 +31,9 @@ scope = "session" ></jsp:useBean>
     </head>
     <body class="center">
     <%--create a new work order record --%>
-    <%  WorkOrder.cus_id = CustomerSearch.getCus_id();
-        WorkOrder.doCreateWorkOrder();%>
-        
-        <%--connect with the datebase, try to create a new line item table --%>       
-         <%  double lineTotalE = 0;
+    <%  WorkOrder.cus_id = CustomerSearch.getCus_id();%>
+    <%--connect with the datebase, try to create a new line item table --%>    
+    <%   double lineTotalE = 0;
          String totalString = (request.getParameter("total"));
          int total = Integer.parseInt(totalString); 
          Statement dbInitializer = Login.dbInitializer();
@@ -48,30 +46,42 @@ scope = "session" ></jsp:useBean>
              
              double lineTotalA = Double.parseDouble(request.getParameter(serviceChargeString));
              double lineTotalB = Double.parseDouble(request.getParameter(serviceQtyString));
-             double lineTotalF = lineTotalA * lineTotalB;
-             lineTotalE += lineTotalF ;
+             lineTotalE += lineTotalA*lineTotalB ;
+             WorkOrder.total = lineTotalE;
+                         }
+             WorkOrder.doCreateWorkOrder(); 
+        
+          
+          
+             for (int j=1; j <= total; j++) {
+             String serviceIdString1 = "serviceId" + j;
+             String serviceNameString1 = "serviceName" + j;
+             String serviceChargeString1 = "serviceCharge" + j;
+             String serviceDetailString1= "serviceDetail" + j;
+             String serviceQtyString1 = "serviceQty" + j;
              
+             double lineTotalG = Double.parseDouble(request.getParameter(serviceChargeString1));
+             double lineTotalH = Double.parseDouble(request.getParameter(serviceQtyString1));
+             double lineTotalF = lineTotalG * lineTotalH;
+
              try {
         dbInitializer.executeUpdate("insert into lineitem (date, "
                 + "invoiceNum, Service_Id, description, "
                 + "rate, emp_id, hrs_qty, line_total) values ('" + 
                 WorkOrder.now() + "', '" + WorkOrder.autoIncKeyFromFunc + "', '"
-                + (request.getParameter(serviceIdString))
-                + "', '" + (request.getParameter(serviceNameString))
-                + "', '" + (request.getParameter(serviceChargeString))
+                + (request.getParameter(serviceIdString1))
+                + "', '" + (request.getParameter(serviceNameString1))
+                + "', '" + (request.getParameter(serviceChargeString1))
                 + "', '" + WorkOrder.getEmp_id()
-                + "', '" + (request.getParameter(serviceQtyString))
+                + "', '" + (request.getParameter(serviceQtyString1))
                 + "', '" + lineTotalF + "');");
             
         }
         catch (SQLException ex) {
                     ex.printStackTrace();
                 } 
-         }
-         
-         
-         
-         %>
+         } %>
+        
           <%--print our the confirmmation --%>
            <% out.print( " " + CustomerSearch.getLastName() + ". " + CustomerSearch.getFirstName() + ", thank you for  choosing Motor City Repair. " + "<br/>"
                 + "Your service number is: " + WorkOrder.autoIncKeyFromFunc + "<br/>"

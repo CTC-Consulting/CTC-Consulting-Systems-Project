@@ -99,8 +99,7 @@ public class WorkOrder {
             setCharge(rs.getDouble("charge")); 
             setDetail(rs.getString("detail")); 
             }
-            
-            total +=rs.getDouble("charge");
+          //  total +=rs.getDouble("charge");
       }
       
       }
@@ -135,7 +134,7 @@ public class WorkOrder {
         
          stmt.executeUpdate("insert into workOrder(location, TimeIn, vin, cus_id, emp_id, total, balance,status)"
                  + " values('" + getLocation() + "','" + now() + "','" + getVin() + "','" + getCus_id() + "','" +
-                 getEmp_id() + "', '" + total + "', '" + total + "','" + "open" + "');");
+                 getEmp_id() + "', '" + getTotal() + "', '" + getTotal() + "','" + "open" + "');");
          System.out.println( " " + getCus_id());
          
       //   int autoIncKeyFromFunc = -1;
@@ -420,6 +419,20 @@ public class WorkOrder {
      */
     public void setLineTotalE(double lineTotalE) {
         this.lineTotalE = lineTotalE;
+    }
+
+    /**
+     * @return the total
+     */
+    public double getTotal() {
+        return total;
+    }
+
+    /**
+     * @param total the total to set
+     */
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     

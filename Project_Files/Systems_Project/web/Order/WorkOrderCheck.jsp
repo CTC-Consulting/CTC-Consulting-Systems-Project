@@ -73,15 +73,15 @@
              %>
              <tr><td>
                 <input type = "text" name = "<% out.print(serviceIdString); %>"   
-                   value ="0"/></td><td>
+                   value ="0" /></td><td>
                 <input type = "text" name = "<% out.print(serviceNameString); %>"   
                    value ="Labor"/></td><td>    
                 <input type = "text" name = "<% out.print(serviceChargeString); %>"   
-                   value ="<% WorkOrder.getRate(); %>"/></td><td>
+                   value ="<% WorkOrder.getRate(); %>" required/></td><td>
                 <input type = "text" name = "<% out.print(serviceDetailString); %>"   
                    value ="Hourly Labor Charge"/></td><td>
                 <input type = "text" name = "<% out.print(serviceQtyString); %>"   
-                   value ="1"/></td><tr>
+                   value ="1" required/></td><tr>
              <%
                String[] array = request.getParameterValues("service_id");
                if (array != null) {
