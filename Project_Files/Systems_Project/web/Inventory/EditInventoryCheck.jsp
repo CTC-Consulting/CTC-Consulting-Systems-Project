@@ -1,11 +1,14 @@
 <%-- 
     Document   : EditInventoryCheck
     Created on : Mar 6, 2012, 11:56:58 AM
-    Author     : mshank
+    Author     : Matthew Shank
+
+   This .jsp is used in the process to edit inventory in the database.
+   This file edits the data in the database.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<!-- Import data check and edit inventory beans  -->
 <%@page import = "Inventory.EditInventory" %>
 <%@page import = "Inventory.DataCheck" %>
 
@@ -33,26 +36,32 @@
             <br />
             <br />
         <% 
+        //  Checking entered cost to determine if it's a double
         boolean able = DataCheckId.doubleCheck(request.getParameter
                 ("partCost"));
         if (able == true){
+        //  Checking entered price to determine if it's a double    
             able = DataCheckId.doubleCheck(request.getParameter
                     ("partPrice"));
             if (able == true)
+        //  Checking entered quantity to determine if it's an integer
                 able = DataCheckId.intCheck(request.getParameter
                         ("partQuantity"));
         }
         if (able == true){
+        //  If all checks are true edit inventory    
         EditInventoryId.doEdit();
           out.print("Your part has been edited in the Motor City "
                   + "Inventory database!");
                    }
                else {
+        //  If any check is false display error message
             out.print("Error editting database.  Please go back to the "
                     + "previous screen, check you input, and try again.");
                }
           %>
-        <FORM METHOD="LINK" ACTION="InventoryList.jsp">
+        <!-- Link back to Inventory List  -->
+          <FORM METHOD="LINK" ACTION="InventoryList.jsp">
             <INPUT TYPE="submit" VALUE="Return to Inventory List">
         </FORM>
     </div>  

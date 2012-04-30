@@ -2,6 +2,11 @@
     Document   : InventoryEdit
     Created on : Feb 28, 2012, 1:28:02 PM
     Author     : Matthew Shank
+
+   This .jsp is used in the process to edit a part in the inventory database.
+   This file will send the updated data to EditInventoryCheck.
+   This file also has a button allowing for deletion of data, and sends the user
+       to the InventoryDelete page.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,13 +35,13 @@
        
         <%  Statement dbInitializer = Login.dbInitializer();
                 
-                // Search for parts list
+                // Search for the part user selected
                 try {
                     ResultSet parts = dbInitializer.executeQuery
                             ("select * from parts where partNum = " +
                             request.getParameter("partNum") + ";");
                     
-                    // Display part
+                    // Display part information to user, allowing for edits
                     while (parts.next()) { %>
        Item Number: <% out.print(parts.getString("partNum")); %>    
        <form method ="get" action ="EditInventoryCheck.jsp">
@@ -63,11 +68,14 @@
             <input type = "text" name = "partQuantity"
                    value ="<% out.print(parts.getString("quantity")); %>"/>
             <br />
+            <!-- Confirm new part data and send to EditInventoryCheck page  -->
             <p><input type = "submit" name = "Submit"
                       value = "Edit" />
+            <!-- Reset button to reset what the user has entered  -->    
                 <input type = "reset" value = "Reset" />
             </p>
         </form>
+            <!-- Delete button in case the user wants the part deleted  -->
             <form method ="get" action="InventoryDelete.jsp">
                     <input type="hidden" name="partNum"
                            value="<% out.print(parts.getString

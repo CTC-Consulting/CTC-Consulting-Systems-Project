@@ -2,6 +2,11 @@
     Document   : InventoryList
     Created on : Feb 7, 2012, 12:05:57 PM
     Author     : Matthew Shank
+
+   This page is the first page the user sees when selecting the inventory option.
+   From this page the user can choose to add or edit the inventory.
+   Both options send the user to other pages which allow these commands to
+      occur.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,7 +32,7 @@
             <br />
             <br />
             <br />
-       
+       <!-- Create the table for the inventory list  -->
         <table border="1">
             <tr>
                 <Th>Part #</th>
@@ -56,14 +61,16 @@
                 <td><% out.print(parts.getString("price")); %></td>
                 <td><% out.print(parts.getString("quantity")); %></td>
                 <td>
-                <form method ="get" action="QuantityAdd.jsp">
+                <!-- Link to add quantity to a particular part  -->
+                    <form method ="get" action="QuantityAdd.jsp">
                     <input type="hidden" name="partNum"
                            value="<% out.print(parts.getString
                                    ("partNum")); %>">
                     <input type="Submit" name="Submit" value="Add Qty">
                 </form></td>
                 <td>
-                <form method ="get" action="InventoryEdit.jsp">
+                <!--  Link to edit a part -->
+                    <form method ="get" action="InventoryEdit.jsp">
                     <input type="hidden" name="partNum"
                            value="<% out.print(parts.getString
                                    ("partNum")); %>">
@@ -78,6 +85,7 @@
                 }  %>
         </table>
         <br />
+        <!-- Link to add a part to the database  -->
         <FORM METHOD="LINK" ACTION="InventoryAdd.jsp">
             <INPUT TYPE="submit" VALUE="Add New Inventory">
         </FORM>

@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Created by:  Matthew Shank
+ * This bean contains the code to delete a part from the database
  */
 package Inventory;
 
@@ -8,7 +8,7 @@ package Inventory;
  *
  * @author mshank
  */
-
+//  Import login class containing dbInitializer
 import EmployeeLogin.Login;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,7 +19,7 @@ public class DeleteInventory {
     public DeleteInventory() {
         
     }
-    //delete a record for a part
+    //Delete the part from the database
     public void doDelete() throws SQLException, ClassNotFoundException {
         Statement dbInitializer = Login.dbInitializer();
         try {

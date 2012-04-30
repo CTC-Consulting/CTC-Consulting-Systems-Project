@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Created by:  Matthew Shank
+ * This bean contains the code to edit a part in the database
  */
 package Inventory;
 
@@ -9,10 +9,12 @@ package Inventory;
  * @author Matthew Shank
  */
 
+//  Import bean that contains dbInitializer
 import EmployeeLogin.Login;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+//  Created the inventory class
 public class EditInventory {
     private String itemNumber;
     private String partName;
@@ -25,7 +27,7 @@ public class EditInventory {
     
     public EditInventory() {
     }
-    //update part information
+    //Update part information
      public void doEdit() throws SQLException, ClassNotFoundException {
         Statement dbInitializer = Login.dbInitializer();
         try {
@@ -41,7 +43,7 @@ public class EditInventory {
                     ex.printStackTrace();
                 } 
        }
-     //update part quantity
+     //Update part quantity
      public void doAddQuantity() throws SQLException, ClassNotFoundException {
         Statement dbInitializer = Login.dbInitializer();
         try {
@@ -112,7 +114,7 @@ public class EditInventory {
     }
 
     /**
-     * @return the partCost
+     * @return the partCost, trimming for extra digits
      */
     public String getPartCost() {
         return partCost.trim();
@@ -126,7 +128,7 @@ public class EditInventory {
     }
 
     /**
-     * @return the partPrice
+     * @return the partPrice, trimming for extra digits
      */
     public String getPartPrice() {
         return partPrice.trim();

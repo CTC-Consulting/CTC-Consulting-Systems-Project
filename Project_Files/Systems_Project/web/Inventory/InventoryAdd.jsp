@@ -1,7 +1,10 @@
 <%-- 
     Document   : InventoryAdd
     Created on : Feb 7, 2012, 12:07:18 PM
-    Author     : mshank
+    Author     : Matthew Shank
+
+   This .jsp is used in the process to add inventory to the database.
+   This file allows the user to input the data of the new part being entered.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -21,7 +24,8 @@
        <div id="indexCenter">
            <br />
            <br />
-            <form method ="get" action ="AddInventoryCheck.jsp">
+           <!-- Creating the form form that user will fill to create part  --> 
+           <form method ="get" action ="AddInventoryCheck.jsp">
            <table border="0" cellspacing="2" cellpadding="2">
             <tbody>
                 <tr>
@@ -53,9 +57,11 @@
                     <td> </td>
                     </tr>
                 <tr>
+                    <!-- Submit to send data to AddInventoryCheck page  -->
                     <td colspan ="2"> <input type = "submit" name = "Submit"  
 				                value = "Add New Inventory">
-                     <input type = "reset" value = "Reset"> </td>
+                    <!-- Reset what the user has entered  --> 
+                        <input type = "reset" value = "Reset"> </td>
                     </tr>
               </tbody>
           </table> 

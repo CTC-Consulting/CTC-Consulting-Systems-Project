@@ -2,11 +2,15 @@
     Document   : AddInventoryCheck
     Created on : Feb 26, 2012, 8:55:05 PM
     Author     : Matthew Shank
+
+   This .jsp is used in the process to add new inventory to the database.
+   This file sends the data to the database.
    
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<!-- Import database altering and data check beans  -->
 <%@page import = "Inventory.AddInventory" %>
 <%@page import = "Inventory.DataCheck" %>
 
@@ -33,27 +37,33 @@
             <br />
             <br />
             <br />
-        <% 
+        <%
+        //  Checking entered cost to determine if it's a double
         boolean able = DataCheckId.doubleCheck(request.getParameter
                 ("partCost"));
+        //  Checking entered price to determine if it's a double
         if (able == true){
             able = DataCheckId.doubleCheck(request.getParameter
                     ("partPrice"));
-            if (able == true)
+        //  Checking entered quantity to determine if it's an integer
+                if (able == true)
                 able = DataCheckId.intCheck(request.getParameter
                         ("partQuantity"));
         }
+        //  If checks are true create new inventory
         if (able == true){
         AddInventoryId.doCreate();
           out.print("Your part is now registered in the Motor City "
                   + "Inventory database!");
         }
                else{
-            out.print("Error adding to database.  Please go back to the "
+         //  If any checks are false give error message
+                   out.print("Error adding to database.  Please go back to the "
                     + "previous screen, check you input, and try again.");
                }
           %>
-        <FORM METHOD="LINK" ACTION="InventoryList.jsp">
+        <!--  Link back to inventory list  -->
+          <FORM METHOD="LINK" ACTION="InventoryList.jsp">
             <INPUT TYPE="submit" VALUE="Return to Inventory List">
         </FORM>
        </div>  
