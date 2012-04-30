@@ -1,11 +1,14 @@
 <%-- 
     Document   : DeleteInventoryCheck
     Created on : Mar 6, 2012, 12:57:32 PM
-    Author     : mshank
+    Author     : Matthew Shank
+
+    This .jsp is used in the process to delete inventory in the database.
+    This file performs the actual deletion in the database.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<!-- Import delete inventory bean  -->
 <%@page import = "Inventory.DeleteInventory" %>
 
 <jsp:useBean id = "DeleteInventoryId" 
@@ -29,11 +32,14 @@
             <br />
             <br />
             <br />
-        <% DeleteInventoryId.doDelete();
+        <% 
+        //  Perform deletion of part from database
+        DeleteInventoryId.doDelete();
           out.print("Your part has been deleted in the Motor City "
                   + "Inventory database!");
           %>
-        <FORM METHOD="LINK" ACTION="InventoryList.jsp">
+        <!-- Link to return to Inventory List  -->
+          <FORM METHOD="LINK" ACTION="InventoryList.jsp">
             <INPUT TYPE="submit" VALUE="Return to Inventory List">
         </FORM>
     </div>  

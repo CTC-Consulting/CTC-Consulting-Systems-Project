@@ -1,7 +1,10 @@
 <%-- 
     Document   : InventoryDelete
     Created on : Mar 6, 2012, 12:59:29 PM
-    Author     : mshank
+    Author     : Matthew Shank
+
+    This .jsp is used in the procces to delete a part from the database.
+    This file is used to confirm that the user does want to delete the part.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,20 +30,21 @@
        <div id="indexCenter">
             <br />
             <br />
+        <!-- Display warning to user -->
         <h1 style = "color: red" > Warning!!! </h1>
         <h2>Deleting a part from the database cannot be reversed.</h2> 
         <h2> Are you sure you want to delete this part? </h2>  <br /> <br />
         
         <%  Statement dbInitializer = Login.dbInitializer();
                 
-                // Search for parts list
+                // Search for the part user selected
                 try {
                     ResultSet parts = dbInitializer.executeQuery
                             ("select * from parts " 
                             + "where partNum = " + request.getParameter
                             ("partNum") + ";");
                     
-                    // Display part
+                    // Display part information to user
                     while (parts.next()) { %>
        Item Number: <% out.print(parts.getString("partNum")); %> <br />
        Part: <% out.print(parts.getString("part")); %> <br />
@@ -50,6 +54,8 @@
        Price: <% out.print(parts.getString("price")); %> <br />
        Quantity: <% out.print(parts.getString("quantity")); %> <br /> <br />
        
+       <!-- Button to confirm user wants to delete part, and send part number to 
+           DeleteInventoryCheck page   -->
        <form method ="get" action="DeleteInventoryCheck.jsp">
                     <input type="hidden" name="itemNumber"
                            value="<% out.print(parts.getString
@@ -62,7 +68,8 @@
                 catch (SQLException ex) {
                     ex.printStackTrace();
                 }  %>
-       <FORM METHOD="LINK" ACTION="InventoryList.jsp">
+       <!-- Return to Inventory List  -->
+                <FORM METHOD="LINK" ACTION="InventoryList.jsp">
             <INPUT TYPE="submit" VALUE="Return to Inventory List">
        </FORM>
     </div>  

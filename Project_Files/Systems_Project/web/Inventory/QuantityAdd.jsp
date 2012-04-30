@@ -1,7 +1,10 @@
 <%-- 
     Document   : QuantityAdd
     Created on : Mar 6, 2012, 1:33:49 PM
-    Author     : mshank
+    Author     : Matthew Shank
+
+   This .jsp is used in the process to add quantity to a part in the database.
+   This file will send the quantity to add to the AddQuantityCheck page.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -32,13 +35,13 @@
             
         <%  Statement dbInitializer = Login.dbInitializer();
                 
-                // Search for parts list
+                // Search for parts user requested
                 try {
                     ResultSet parts = dbInitializer.executeQuery
                             ("select * from parts where partNum = "
                             + request.getParameter("partNum") + ";");
                     
-                    // Display part
+                    // Display part to user
                     while (parts.next()) { %>
        Item Number: <% out.print(parts.getString("partNum")); %> <br />
        Part: <% out.print(parts.getString("part")); %> <br />
@@ -48,11 +51,13 @@
        Price: <% out.print(parts.getString("price")); %> <br />
        Current Quantity: <% out.print(parts.getString("quantity")); %> <br /> <br />
        
+       <!-- Request from user the amount to add  -->
        <form method ="get" action="AddQuantityCheck.jsp">
                     Amount to Add:
                     <input type = "text" name = "quantityAdd" /><br />
                     <input type="hidden" name="itemNumber"
                         value="<% out.print(parts.getString("partNum")); %>">
+        <!-- Send to AddQuantityCheck page  -->            
                     <input type="Submit" name="Submit" value="Add Quantity">
        </form> <br />
                     <%      } 
@@ -61,7 +66,8 @@
                 catch (SQLException ex) {
                     ex.printStackTrace();
                 }  %>
-       <FORM METHOD="LINK" ACTION="InventoryList.jsp">
+       <!-- Link back to Inventory List  -->
+                <FORM METHOD="LINK" ACTION="InventoryList.jsp">
             <INPUT TYPE="submit" VALUE="Return to Inventory List">
        </FORM>
     </div>  

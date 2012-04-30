@@ -2,10 +2,14 @@
     Document   : AddQuantityCheck
     Created on : Mar 8, 2012, 1:28:17 PM
     Author     : Matthew Shank
+
+    This .jsp is used to add quantity to a part in the database.
+    This file sends the data to the database.
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<!--  Insert data check and database altering beans -->
 <%@page import = "Inventory.EditInventory" %>
 <%@page import = "Inventory.DataCheck" %>
 
@@ -34,17 +38,21 @@
             <br />
             <br />
         <% 
+        //  Checking entered quantity to determine if it's an integer
         boolean able = DataCheckId.intCheck(request.getParameter
                 ("quantityAdd"));
         if (able == true){
+        //  If check is true add quantity to database
         AddQuantityId.doAddQuantity();
           out.print("Your inventory has been updated with the added quantity!");
                           }
                   else {
+        //  If check is false give error message
                  out.print("Error editting database.  Please go back to the "
                     + "previous screen, check you input, and try again.");
                  }  
         %>
+        <!-- Link back to Inventory List  -->
         <FORM METHOD="LINK" ACTION="InventoryList.jsp">
             <INPUT TYPE="submit" VALUE="Return to Inventory List">
         </FORM>

@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Created by:  Matthew Shank
+ * This bean contains the SQL commands to add a part to the inventory database.
  */
 package Inventory;
 
@@ -11,8 +11,10 @@ package Inventory;
 import java.sql.*;
 import java.io.OutputStream;
 
+//  Import bean that contains the dbIntializer
 import EmployeeLogin.Login;
 
+//  Create the inventory class
 public class AddInventory {
     private String partName;
     private String partDescription;
@@ -86,7 +88,7 @@ public class AddInventory {
     }
 
     /**
-     * @return the partCost
+     * @return the partCost, trimming for extra digits
      */
     public String getPartCost() {
         return partCost.trim();
@@ -100,7 +102,7 @@ public class AddInventory {
     }
 
     /**
-     * @return the partPrice
+     * @return the partPrice, trimming for extra digits
      */
     public String getPartPrice() {
         return partPrice.trim();

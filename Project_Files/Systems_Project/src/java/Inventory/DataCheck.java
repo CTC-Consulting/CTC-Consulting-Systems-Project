@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *  Created by:  Matthew Shank
+ *  This bean confirms data types the user entered.
  */
 package Inventory;
 
@@ -10,7 +10,7 @@ package Inventory;
  */
 
 public class DataCheck {
-    //double check quantity
+    //Check entered data is a double type
     public boolean doubleCheck(String x){
         
         int check = x.indexOf(".");
@@ -24,7 +24,7 @@ public class DataCheck {
             return false;
         }
 }
-    //check quantity
+    //Check entered data is an integer type
     public boolean intCheck(String x){
         try {
             Integer.parseInt(x);
