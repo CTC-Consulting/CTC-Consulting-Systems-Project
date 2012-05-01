@@ -34,7 +34,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1 style = "text-align: center; color: #000">Update Invoice </h1><br />
+        <h1 style = "text-align: center; color: #000">Update Invoice Entry Form </h1><br />
                                                                           <br />
         <% NumberFormat df = NumberFormat.getCurrencyInstance();   %>
         <% java.util.Date date= new java.util.Date(); %>
@@ -65,7 +65,7 @@
         
     
     Enter Employee ID:<br />
-    *<input type = "text" name = "emp_Id" required /><br /><br />
+    *<input type = "text" name = "emp_id" required /><br /><br />
     Payment Amount:<br />                                            
     *<input type = "text" name = "payment" required /><br /><br />
     
@@ -82,26 +82,27 @@
     <br />
     <br />
     
+   
+    <input type = "submit" name = "Submit" value = "Apply Payment" />
+    <input type = "reset" value = "Reset" /><br />
+    </fieldset>
+        
     <input type="hidden" name="invoiceNum" value="<%= Integer.parseInt(request.getParameter("invoiceNum")) %>">
     <input type="hidden" name="location" value="<%= Invoice.getLocation()%>">
-    <input type="hidden" name="emp_Id" value="<%= UpdateInvoice.getEmp_Id()%>">
-    <input type="hidden" name="cus_Id" value="<%= UpdateInvoice.getCus_Id()%>">
+    <input type="hidden" name="emp_Id" value="<%= Invoice.getEmp_id()%>">
+    <input type="hidden" name="cus_id" value="<%= Invoice.getCus_id()%>">
     <input type="hidden" name="vin" value="<%= Invoice.getVin()%>">
     <input type="hidden" name="total" value="<%= Invoice.getTotal()%>">
     <input type="hidden" name="payment" value="<%= UpdateInvoice.getPayment()%>">
     <input type="hidden" name="Payment_Date" value="<%= new Timestamp(date.getTime()) %>">
     <input type="hidden" name="Payment_Type" value="<%= request.getParameter("drop") %>">
     <input type="hidden" name="balance" value="<%= Invoice.getBalance()%>">
-    <input type="hidden" name="status" value="<%= Invoice.getStatus()%>">
-    
-    
-   
-    
-    <input type = "submit" name = "Submit" value = "Apply Payment" />
-    <input type = "reset" value = "Reset" /><br />
-    </fieldset>
+    <input type="hidden" name="status" value="<%= Invoice.getStatus()%>"> 
+        
+
     
 </form>
-    
+                                            
+   
     </body>
 </html>

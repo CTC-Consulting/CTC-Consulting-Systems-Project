@@ -31,9 +31,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Create a work order</title>
+        <link rel="stylesheet" type="text/css" href="../CSS/MCwebsite.css">
+        <title> Motor City Repairs - Work Order </title>
     </head>
     <body>
+      <div id="main">
+     <div id="header1">
+            <br />
+            <b> Motor City Repairs - Work Order </b>
+       </div> 
+        <div id="indexCenterIL">
+             <br />
+             <br />
      <form method = "get" action="WorkOrderCheck.jsp" >
       <%--print out the current time and date --%>
       <%= new java.util.Date() %> 
@@ -124,6 +133,10 @@
      
      <input type="submit" name ="Submit" value="Submit" >
     </form>
-     
+         </div>
+          <div id="footer">
+             <br/><h4>&copy;2012 Motor City Repairs </h4>
+          </div>
+       </div>
     </body>
 </html>

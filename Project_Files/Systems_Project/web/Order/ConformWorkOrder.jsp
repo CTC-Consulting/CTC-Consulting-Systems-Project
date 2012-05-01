@@ -27,9 +27,19 @@ scope = "session" ></jsp:useBean>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Order Conform</title>
+        <link rel="stylesheet" type="text/css" href="../CSS/MCwebsite.css">
+        <title> Motor City Repairs - Confirm Work Order </title>
+       
     </head>
     <body class="center">
+        <div id="main">
+     <div id="header1">
+            <br />
+            <b> Motor City Repairs - Confirm Work Order </b>
+       </div> 
+        <div id="indexCenter">
+             <br />
+              <br />
     <%--create a new work order record --%>
     <%  WorkOrder.cus_id = CustomerSearch.getCus_id();%>
     <%--connect with the datebase, try to create a new line item table --%>    
@@ -114,9 +124,12 @@ scope = "session" ></jsp:useBean>
     <br />
     <br />
     <br />
-    
-                
-                
                
+               
+   </div>
+          <div id="footer">
+             <br/><h4>&copy;2012 Motor City Repairs </h4>
+          </div>
+       </div>
     </body>
 </html>

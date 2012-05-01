@@ -26,13 +26,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Work Order Check</title>
-    </head>
-    <body >
+         <link rel="stylesheet" type="text/css" href="../CSS/MCwebsite.css">
+        <title> Motor City Repairs - Work Order Check </title>
+        </head>
+  <body>
+      <div id="main">
+     <div id="header1">
+            <br />
+            <b> Motor City Repairs - Work Order </b>
+       </div> 
+        <div id="indexCenter">
+             <br />
+              <br />
       <%-- check null values --%>
       <% WorkOrder.total = 0;
       if((WorkOrder.getEmp_id() == null) && (WorkOrder.getId() == 0 )&& (WorkOrder.service_id == 0)) {
-         out.print("All fills are requried!"); 
+         out.print("All fields are requried!"); 
                      }  else { %>
        <%--print out the current time and date --%>         
        <p> <%= new java.util.Date() %> </p>
@@ -159,7 +168,11 @@
     </p>    
     <% }%>
     
-   </body>
-    
+    </div>
+          <div id="footer">
+             <br/><h4>&copy;2012 Motor City Repairs </h4>
+          </div>
+       </div>
+    </body>
 </html>
 
